@@ -54,5 +54,5 @@ class AuthGuard extends GetMiddleware {
 }
 
 var appRoutes = [
-  GetPage(name: "/login", page: () => LoginView()),
+  GetPage(name: "/login", page: () => const LoginView()),
 ];

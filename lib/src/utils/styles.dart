@@ -1,4 +1,4 @@
-import 'package:flutter/animation.dart';
+import 'package:flutter/widgets.dart';
 
 Color baseColor = const Color.fromRGBO(33, 33, 33, 100);
 Color baseColor2 = const Color.fromRGBO(50, 50, 50, 100);
