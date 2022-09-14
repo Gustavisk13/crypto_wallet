@@ -1,4 +1,5 @@
 import 'package:crypto_wallet/src/view/login.dart';
+import 'package:crypto_wallet/src/view/teste.dart';
 import 'package:get/get.dart';
 
 class Auth extends GetMiddleware {
@@ -55,4 +56,5 @@ class AuthGuard extends GetMiddleware {
 
 var appRoutes = [
   GetPage(name: "/login", page: () => LoginView()),
+  GetPage(name: "/teste", page: () => TesteView()),
 ];

@@ -16,9 +16,9 @@ class _CryptoWalletAppState extends State<CryptoWalletApp> {
     return GetMaterialApp(
       title: 'Crypto Wallet',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          primaryColor: primaryColor,
-          inputDecorationTheme: InputDecorationTheme(
+        primarySwatch: Colors.blue,
+        primaryColor: primaryColor,
+        /* inputDecorationTheme: InputDecorationTheme(
             labelStyle: TextStyle(color: primaryColor),
             hintStyle: TextStyle(color: primaryColor),
             enabledBorder: UnderlineInputBorder(
@@ -27,7 +27,8 @@ class _CryptoWalletAppState extends State<CryptoWalletApp> {
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: primaryColor),
             ),
-          )),
+          ) */
+      ),
       initialRoute: '/login',
       getPages: appRoutes,
       unknownRoute: GetPage(
