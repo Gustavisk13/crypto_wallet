@@ -1,4 +1,6 @@
+import 'package:crypto_wallet/src/view/eula.dart';
 import 'package:crypto_wallet/src/view/login.dart';
+import 'package:crypto_wallet/src/view/register.dart';
 import 'package:crypto_wallet/src/view/teste.dart';
 import 'package:get/get.dart';
 
@@ -56,5 +58,7 @@ class AuthGuard extends GetMiddleware {
 
 var appRoutes = [
   GetPage(name: "/login", page: () => LoginView()),
+  GetPage(name: "/register", page: () => RegisterView()),
+  GetPage(name: "/eula", page: () => EulaView()),
   GetPage(name: "/teste", page: () => TesteView()),
 ];

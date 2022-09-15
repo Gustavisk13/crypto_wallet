@@ -2,6 +2,7 @@ import 'package:crypto_wallet/src/routes/app_routes.dart';
 import 'package:crypto_wallet/src/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CryptoWalletApp extends StatefulWidget {
   const CryptoWalletApp({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _CryptoWalletAppState extends State<CryptoWalletApp> {
     return GetMaterialApp(
       title: 'Crypto Wallet',
       theme: ThemeData(
+        textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
         primarySwatch: Colors.blue,
         primaryColor: primaryColor,
         /* inputDecorationTheme: InputDecorationTheme(
