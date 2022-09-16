@@ -1,4 +1,4 @@
-name: Crypto Wallet
+name: crypto_wallet
 description: Sua carteira rapida de cotações.
 
 # The following line prevents the package from being accidentally published to
