@@ -6,9 +6,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginView extends StatelessWidget {
-  final LoginController controller = Get.put(LoginController());
   FocusNode focusNode = FocusNode();
   FocusNode focusNode2 = FocusNode();
+  String username = '';
+  String password = '';
 
   @override
   Widget build(BuildContext context) {
@@ -23,73 +24,41 @@ class LoginView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(height: 271, width: 271, child: const Image(image: AssetImage("lib/src/assets/images/logo.png"))),
+                SizedBox(height: 271, width: 271, child: const Image(image: AssetImage("lib/src/assets/images/logo.png"))),
                 const SizedBox(
                   height: 44.68,
                 ),
-                Container(
-                  width: 271,
-                  child: TextField(
-                    focusNode: focusNode,
-                    onSubmitted: (value) {
-                      FocusScope.of(context).requestFocus(focusNode2);
-                    },
-                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 26, horizontal: 20),
-                      filled: true,
-                      fillColor: baseColor2,
-                      labelStyle: TextStyle(color: Colors.white, fontSize: 18),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: secondaryColor, width: 2),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: secondaryColor, width: 2),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      labelText: 'Email',
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 44.68,
-                ),
-                Container(
-                  width: 271,
-                  child: Obx(
-                    () => TextField(
-                      focusNode: focusNode2,
+                Obx(
+                  () => SizedBox(
+                    width: 271,
+                    child: TextField(
+                      controller: loginController.textUsernameController,
+                      focusNode: focusNode,
                       onSubmitted: (value) {
-                        FocusScope.of(context).unfocus();
+                        if (value.isNotEmpty && loginController.textUsernameController.text.isNotEmpty) {
+                          loginController.validateUserInput.value = true;
+                        } else {
+                          loginController.validateUserInput.value = false;
+                        }
+
+                        username = value;
+                        FocusScope.of(context).requestFocus(focusNode2);
                       },
-                      onChanged: (value) async {
-                        await Future.delayed(Duration(milliseconds: 100));
-                        loginController.forgotPassword.value = true;
+                      onChanged: (value) {
+                        if (value.isNotEmpty && loginController.textUsernameController.text.isNotEmpty) {
+                          loginController.validateUserInput.value = true;
+                        } else {
+                          loginController.validateUserInput.value = false;
+                        }
+                        username = value;
                       },
-                      obscureText: controller.passwordVisible.value,
-                      enableSuggestions: false,
-                      autocorrect: false,
                       style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
                       decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          icon: Icon(
-                            Icons.remove_red_eye,
-                            color: loginController.forgotPassword.value ? Colors.white : Colors.grey,
-                          ),
-                          onPressed: () async {
-                            controller.passwordVisible.value = !controller.passwordVisible.value;
-                            await Future.delayed(Duration(seconds: 2));
-                            controller.passwordVisible.value = true;
-                            print(controller.passwordVisible.value);
-                          },
-                        ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 26, horizontal: 20),
+                        errorText: loginController.validateUserInput.value ? null : 'Username cannot be empty',
+                        contentPadding: const EdgeInsets.symmetric(vertical: 26, horizontal: 20),
                         filled: true,
                         fillColor: baseColor2,
-                        labelStyle: TextStyle(color: Colors.white, fontSize: 18),
+                        labelStyle: const TextStyle(color: Colors.white, fontSize: 18),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: secondaryColor, width: 2),
                           borderRadius: BorderRadius.circular(30),
@@ -98,19 +67,101 @@ class LoginView extends StatelessWidget {
                           borderSide: BorderSide(color: secondaryColor, width: 2),
                           borderRadius: BorderRadius.circular(30),
                         ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.red, width: 2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.red, width: 2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        labelText: 'Email',
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 44.68,
+                ),
+                Obx(
+                  () => SizedBox(
+                    width: 271,
+                    child: TextField(
+                      controller: loginController.textPasswordController,
+                      focusNode: focusNode2,
+                      onSubmitted: (value) {
+                        if (value.isNotEmpty && loginController.textPasswordController.text.isNotEmpty) {
+                          loginController.validatePasswordInput.value = true;
+                        } else {
+                          loginController.validatePasswordInput.value = false;
+                        }
+                        password = value;
+                        FocusScope.of(context).unfocus();
+                      },
+                      onChanged: (value) async {
+                        if (value.isNotEmpty && loginController.textPasswordController.text.isNotEmpty) {
+                          loginController.validatePasswordInput.value = true;
+                        } else {
+                          loginController.validatePasswordInput.value = false;
+                        }
+                        password = value;
+
+                        await Future.delayed(const Duration(milliseconds: 100));
+                        loginController.forgotPassword.value = true;
+                      },
+                      obscureText: loginController.passwordVisible.value,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
+                      decoration: InputDecoration(
+                        errorText: loginController.validatePasswordInput.value ? null : 'Password cannot be empty',
+                        suffixIcon: IconButton(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          icon: Icon(
+                            Icons.remove_red_eye,
+                            color: loginController.forgotPassword.value ? Colors.white : Colors.grey,
+                          ),
+                          onPressed: () async {
+                            loginController.passwordVisible.value = !loginController.passwordVisible.value;
+                            await Future.delayed(const Duration(seconds: 2));
+                            loginController.passwordVisible.value = true;
+                            print(loginController.passwordVisible.value);
+                          },
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 26, horizontal: 20),
+                        filled: true,
+                        fillColor: baseColor2,
+                        labelStyle: const TextStyle(color: Colors.white, fontSize: 18),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondaryColor, width: 2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: secondaryColor, width: 2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.red, width: 2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.red, width: 2),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                         labelText: "Senha",
                       ),
                     ),
                   ),
                 ),
-                Obx(() => Container(
+                Obx(() => SizedBox(
                       width: 271,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           AnimatedOpacity(
                             opacity: loginController.forgotPassword.value ? 1 : 0,
-                            duration: Duration(milliseconds: 300),
+                            duration: const Duration(milliseconds: 300),
                             child: TextButton(
                               onPressed: () {},
                               child: Text(
@@ -122,26 +173,43 @@ class LoginView extends StatelessWidget {
                         ],
                       ),
                     )),
-                Container(
+                SizedBox(
                   width: 172,
                   height: 65,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      //loginController.login();
-                    },
-                    child: Text(
-                      "ENTRAR",
-                      style: GoogleFonts.montserrat(color: Colors.black, fontSize: 28, fontWeight: FontWeight.w600),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: secondaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(28),
-                      ),
-                    ),
+                  child: Obx(
+                    () => loginController.validateUserInput.value || loginController.validatePasswordInput.value
+                        ? ElevatedButton(
+                            onPressed: () {
+                              loginController.validateLoginInputs(username, password);
+                              loginController.validateLogin(username, password);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: secondaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(28),
+                              ),
+                            ),
+                            child: Text(
+                              "ENTRAR",
+                              style: GoogleFonts.montserrat(color: Colors.black, fontSize: 28, fontWeight: FontWeight.w600),
+                            ),
+                          )
+                        : ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: secondaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(28),
+                              ),
+                            ),
+                            child: Text(
+                              "ENTRAR",
+                              style: GoogleFonts.montserrat(color: Colors.black, fontSize: 28, fontWeight: FontWeight.w600),
+                            ),
+                          ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
