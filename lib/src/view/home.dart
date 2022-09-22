@@ -14,7 +14,7 @@ class HomeView extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: baseColor,
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: BottomBar(initialActiveIndex: 0),
       body: Container(
         child: Text(
           "Estudar Custom paint",

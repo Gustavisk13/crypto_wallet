@@ -1,6 +1,7 @@
 import 'package:crypto_wallet/src/view/eula.dart';
 import 'package:crypto_wallet/src/view/home.dart';
 import 'package:crypto_wallet/src/view/login.dart';
+import 'package:crypto_wallet/src/view/perfil.dart';
 import 'package:crypto_wallet/src/view/register.dart';
 import 'package:crypto_wallet/src/view/teste.dart';
 import 'package:get/get.dart';
@@ -63,4 +64,5 @@ var appRoutes = [
   GetPage(name: "/eula", page: () => EulaView()),
   GetPage(name: "/home", page: () => HomeView()),
   GetPage(name: "/teste", page: () => TesteView()),
+  GetPage(name: "/perfil", page: () => PerfilView()),
 ];

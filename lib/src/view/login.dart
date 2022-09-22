@@ -51,6 +51,7 @@ class LoginView extends StatelessWidget {
                           loginController.validateUserInput.value = false;
                         }
                         username = value;
+                        loginController.autenticacao.email = value;
                       },
                       style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
                       decoration: InputDecoration(
@@ -105,6 +106,7 @@ class LoginView extends StatelessWidget {
                           loginController.validatePasswordInput.value = false;
                         }
                         password = value;
+                        loginController.autenticacao.senha = value;
 
                         await Future.delayed(const Duration(milliseconds: 100));
                         loginController.forgotPassword.value = true;
@@ -181,7 +183,8 @@ class LoginView extends StatelessWidget {
                         ? ElevatedButton(
                             onPressed: () {
                               loginController.validateLoginInputs(username, password);
-                              loginController.validateLogin(username, password);
+                              /* loginController.validateLogin(username, password); */
+                              loginController.autenticar(context);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: secondaryColor,
