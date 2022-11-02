@@ -1,5 +1,5 @@
 import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
-import 'package:crypto_wallet/src/utils/styles.dart';
+import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

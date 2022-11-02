@@ -1,7 +1,7 @@
 import 'package:crypto_wallet/global/common/components/default_button_component.dart';
 import 'package:crypto_wallet/global/common/components/default_input_component.dart';
 import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
-import 'package:crypto_wallet/src/utils/styles.dart';
+import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/modules/eula/eula_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../../src/utils/styles.dart';
+import '../../global/utils/styles.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

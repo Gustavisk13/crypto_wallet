@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../src/utils/styles.dart';
+import '../../utils/styles.dart';
 
 class DefaultButtonComponent extends StatelessWidget {
   final bool? autofocus;

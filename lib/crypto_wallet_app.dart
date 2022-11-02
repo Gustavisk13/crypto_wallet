@@ -1,6 +1,6 @@
 import 'package:crypto_wallet/global/routes/app_routes.dart';
 import 'package:crypto_wallet/global/themes/normal_theme.dart';
-import 'package:crypto_wallet/src/utils/styles.dart';
+import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

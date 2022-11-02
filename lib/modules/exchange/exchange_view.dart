@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../src/utils/styles.dart';
+import '../../global/utils/styles.dart';
 
 class ExchangeView extends StatelessWidget {
   const ExchangeView({super.key});

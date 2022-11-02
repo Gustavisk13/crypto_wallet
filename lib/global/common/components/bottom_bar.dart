@@ -1,5 +1,5 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:crypto_wallet/src/utils/styles.dart';
+import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
