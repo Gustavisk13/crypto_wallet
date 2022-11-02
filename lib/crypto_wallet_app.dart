@@ -1,4 +1,5 @@
 import 'package:crypto_wallet/global/routes/app_routes.dart';
+import 'package:crypto_wallet/global/themes/normal_theme.dart';
 import 'package:crypto_wallet/src/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,21 +17,7 @@ class _CryptoWalletAppState extends State<CryptoWalletApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Crypto Wallet',
-      theme: ThemeData(
-        textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
-        primarySwatch: Colors.blue,
-        primaryColor: primaryColor,
-        /* inputDecorationTheme: InputDecorationTheme(
-            labelStyle: TextStyle(color: primaryColor),
-            hintStyle: TextStyle(color: primaryColor),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-            ),
-            focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: primaryColor),
-            ),
-          ) */
-      ),
+      theme: NormalTheme.getTheme(context),
       initialRoute: '/login',
       getPages: AppRoutes.appRoutes,
       unknownRoute: GetPage(
