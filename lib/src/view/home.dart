@@ -1,3 +1,5 @@
+import 'package:crypto_wallet/global/common/components/default_button_component.dart';
+import 'package:crypto_wallet/global/common/components/default_input_component.dart';
 import 'package:crypto_wallet/src/shared/components/bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,13 +16,17 @@ class HomeView extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: baseColor,
-      bottomNavigationBar: BottomBar(initialActiveIndex: 0),
       body: Container(
-        child: Text(
-          "Estudar Custom paint",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
+          child: Column(
+        children: [
+          DefaultInputComponent(
+            enableSuffixIcon: false,
+            label: 'Teste',
+            validated: true,
+          ),
+          DefaultButtonComponent(onPressed: null, child: Text('Teste'))
+        ],
+      )),
     ));
   }
 }

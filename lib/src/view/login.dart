@@ -1,3 +1,6 @@
+import 'package:crypto_wallet/global/common/components/default_button_component.dart';
+import 'package:crypto_wallet/global/common/components/default_input_component.dart';
+import 'package:crypto_wallet/global/common/components/loading_component.dart';
 import 'package:crypto_wallet/src/controller/login/login_controller.dart';
 import 'package:crypto_wallet/src/utils/styles.dart';
 import 'package:crypto_wallet/src/view/register.dart';
@@ -6,11 +9,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginView extends StatelessWidget {
-  FocusNode focusNode = FocusNode();
-  FocusNode focusNode2 = FocusNode();
-  String username = '';
-  String password = '';
-
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
@@ -24,62 +22,28 @@ class LoginView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 271, width: 271, child: const Image(image: AssetImage("lib/src/assets/images/logo.png"))),
+                const SizedBox(height: 271, width: 271, child: Image(image: AssetImage("lib/assets/images/logo.png"))),
                 const SizedBox(
                   height: 44.68,
                 ),
                 Obx(
                   () => SizedBox(
-                    width: 271,
-                    child: TextField(
-                      controller: loginController.textUsernameController,
-                      focusNode: focusNode,
-                      onSubmitted: (value) {
-                        if (value.isNotEmpty && loginController.textUsernameController.text.isNotEmpty) {
-                          loginController.validateUserInput.value = true;
-                        } else {
-                          loginController.validateUserInput.value = false;
-                        }
-
-                        username = value;
-                        FocusScope.of(context).requestFocus(focusNode2);
-                      },
-                      onChanged: (value) {
-                        if (value.isNotEmpty && loginController.textUsernameController.text.isNotEmpty) {
-                          loginController.validateUserInput.value = true;
-                        } else {
-                          loginController.validateUserInput.value = false;
-                        }
-                        username = value;
-                        loginController.autenticacao.email = value;
-                      },
-                      style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
-                      decoration: InputDecoration(
-                        errorText: loginController.validateUserInput.value ? null : 'Username cannot be empty',
-                        contentPadding: const EdgeInsets.symmetric(vertical: 26, horizontal: 20),
-                        filled: true,
-                        fillColor: baseColor2,
-                        labelStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondaryColor, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondaryColor, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.red, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.red, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        labelText: 'Email',
-                      ),
-                    ),
-                  ),
+                      width: 271,
+                      child: DefaultInputComponent(
+                        controller: loginController.textUsernameController,
+                        validated: loginController.validateUserInput.value,
+                        label: 'Email',
+                        errorText: 'Usuário não pode ser vazio',
+                        enableSuffixIcon: false,
+                        onFieldSubmitted: (value) {
+                          loginController.validateInput(value);
+                          loginController.username = value;
+                        },
+                        onChanged: (value) {
+                          loginController.validateInput(value);
+                          loginController.username = value;
+                        },
+                      )),
                 ),
                 const SizedBox(
                   height: 44.68,
@@ -87,72 +51,29 @@ class LoginView extends StatelessWidget {
                 Obx(
                   () => SizedBox(
                     width: 271,
-                    child: TextField(
+                    child: DefaultInputComponent(
+                      label: 'Senha',
                       controller: loginController.textPasswordController,
-                      focusNode: focusNode2,
-                      onSubmitted: (value) {
-                        if (value.isNotEmpty && loginController.textPasswordController.text.isNotEmpty) {
-                          loginController.validatePasswordInput.value = true;
-                        } else {
-                          loginController.validatePasswordInput.value = false;
-                        }
-                        password = value;
-                        FocusScope.of(context).unfocus();
+                      validated: loginController.validatePasswordInput.value,
+                      obscureText: loginController.passwordVisible.value,
+                      errorText: 'Senha não pode ser vazia',
+                      textInputAction: TextInputAction.done,
+                      enableSuffixIcon: true,
+                      suffixIconColor: !loginController.passwordVisible.value ? Colors.white : Colors.grey,
+                      iconOnTap: () {
+                        loginController.showPassword();
+                      },
+                      suffixIcon: const Icon(Icons.remove_red_eye),
+                      onFieldSubmitted: (value) {
+                        loginController.validateInput(value);
+                        loginController.password = value;
                       },
                       onChanged: (value) async {
-                        if (value.isNotEmpty && loginController.textPasswordController.text.isNotEmpty) {
-                          loginController.validatePasswordInput.value = true;
-                        } else {
-                          loginController.validatePasswordInput.value = false;
-                        }
-                        password = value;
-                        loginController.autenticacao.senha = value;
-
+                        loginController.validateInput(value);
+                        loginController.password = value;
                         await Future.delayed(const Duration(milliseconds: 100));
                         loginController.forgotPassword.value = true;
                       },
-                      obscureText: loginController.passwordVisible.value,
-                      enableSuggestions: false,
-                      autocorrect: false,
-                      style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
-                      decoration: InputDecoration(
-                        errorText: loginController.validatePasswordInput.value ? null : 'Password cannot be empty',
-                        suffixIcon: IconButton(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          icon: Icon(
-                            Icons.remove_red_eye,
-                            color: loginController.forgotPassword.value ? Colors.white : Colors.grey,
-                          ),
-                          onPressed: () async {
-                            loginController.passwordVisible.value = !loginController.passwordVisible.value;
-                            await Future.delayed(const Duration(seconds: 2));
-                            loginController.passwordVisible.value = true;
-                            print(loginController.passwordVisible.value);
-                          },
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 26, horizontal: 20),
-                        filled: true,
-                        fillColor: baseColor2,
-                        labelStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondaryColor, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: secondaryColor, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.red, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.red, width: 2),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        labelText: "Senha",
-                      ),
                     ),
                   ),
                 ),
@@ -179,37 +100,17 @@ class LoginView extends StatelessWidget {
                   width: 172,
                   height: 65,
                   child: Obx(
-                    () => loginController.validateUserInput.value || loginController.validatePasswordInput.value
-                        ? ElevatedButton(
+                    () => !loginController.loadingAuth.value
+                        ? DefaultButtonComponent(
                             onPressed: () {
-                              loginController.validateLoginInputs(username, password);
-                              /* loginController.validateLogin(username, password); */
+                              //loginController.validateLoginInputs(username, password);
                               loginController.autenticar(context);
                             },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: secondaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(28),
-                              ),
-                            ),
-                            child: Text(
+                            child: const Text(
                               "ENTRAR",
-                              style: GoogleFonts.montserrat(color: Colors.black, fontSize: 28, fontWeight: FontWeight.w600),
                             ),
                           )
-                        : ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: secondaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(28),
-                              ),
-                            ),
-                            child: Text(
-                              "ENTRAR",
-                              style: GoogleFonts.montserrat(color: Colors.black, fontSize: 28, fontWeight: FontWeight.w600),
-                            ),
-                          ),
+                        : DefaultButtonComponent(onPressed: () {}, child: const LoadingComponent()),
                   ),
                 ),
                 const SizedBox(

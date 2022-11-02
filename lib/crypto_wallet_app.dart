@@ -1,4 +1,4 @@
-import 'package:crypto_wallet/src/routes/app_routes.dart';
+import 'package:crypto_wallet/global/routes/app_routes.dart';
 import 'package:crypto_wallet/src/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

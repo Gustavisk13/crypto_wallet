@@ -10,7 +10,7 @@ class AutenticacaoModel {
   });
 
   factory AutenticacaoModel.fromJson(Map<String, dynamic> json) {
-    return AutenticacaoModel(email: json['id'].toString(), tokenAcesso: json['auth_token']);
+    return AutenticacaoModel(tokenAcesso: json['auth_token']);
   }
 
   Map<String, dynamic> toJson() {

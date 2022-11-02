@@ -3,6 +3,7 @@ import 'package:crypto_wallet/src/view/home.dart';
 import 'package:crypto_wallet/src/view/login.dart';
 import 'package:crypto_wallet/src/view/perfil.dart';
 import 'package:crypto_wallet/src/view/register.dart';
+import 'package:crypto_wallet/src/view/root.dart';
 import 'package:crypto_wallet/src/view/teste.dart';
 import 'package:get/get.dart';
 
@@ -55,14 +56,14 @@ class AuthGuard extends GetMiddleware {
     }
   }
 } */
-
 }
 
 var appRoutes = [
   GetPage(name: "/login", page: () => LoginView()),
+  GetPage(name: "/root", page: () => const Root()),
   GetPage(name: "/register", page: () => RegisterView()),
   GetPage(name: "/eula", page: () => EulaView()),
-  GetPage(name: "/home", page: () => HomeView()),
+  GetPage(name: "/home", page: () => const HomeView()),
   GetPage(name: "/teste", page: () => TesteView()),
-  GetPage(name: "/perfil", page: () => PerfilView()),
+  GetPage(name: "/perfil", page: () => const PerfilView()),
 ];
