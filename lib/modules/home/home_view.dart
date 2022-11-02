@@ -16,17 +16,7 @@ class HomeView extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: baseColor,
-      body: Container(
-          child: Column(
-        children: [
-          DefaultInputComponent(
-            enableSuffixIcon: false,
-            label: 'Teste',
-            validated: true,
-          ),
-          DefaultButtonComponent(onPressed: null, child: Text('Teste'))
-        ],
-      )),
+      body: Container(child: Center(child: Text('Home'))),
     ));
   }
 }

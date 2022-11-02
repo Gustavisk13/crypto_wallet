@@ -1,4 +1,4 @@
-import 'package:crypto_wallet/src/controller/root_controller.dart';
+import 'package:crypto_wallet/modules/root/controllers/root_controller.dart';
 import 'package:crypto_wallet/global/common/components/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';

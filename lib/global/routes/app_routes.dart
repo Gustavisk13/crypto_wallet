@@ -7,7 +7,7 @@ import 'package:crypto_wallet/modules/list/listcoins_view.dart';
 import 'package:crypto_wallet/modules/login/login_view.dart';
 import 'package:crypto_wallet/modules/profile/profile_view.dart';
 import 'package:crypto_wallet/modules/register/register_view.dart';
-import 'package:crypto_wallet/src/view/root.dart';
+import 'package:crypto_wallet/modules/root/root.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {
