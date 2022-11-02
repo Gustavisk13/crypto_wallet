@@ -1,3 +1,4 @@
+import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/modules/root/controllers/root_controller.dart';
 import 'package:crypto_wallet/global/common/components/bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class Root extends StatelessWidget {
       }
     });
     return Obx(() => Scaffold(
+          backgroundColor: baseColor,
           body: rootController.currentPage(),
           bottomNavigationBar: BottomBar(
             initialActiveIndex: rootController.currentIndex.value,

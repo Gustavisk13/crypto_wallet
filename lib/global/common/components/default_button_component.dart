@@ -12,6 +12,9 @@ class DefaultButtonComponent extends StatelessWidget {
   final Function? onHover;
   final Function? onLongPress;
   final Function? onPressed;
+  final Color? primary;
+  final Color? secondary;
+  final bool? toggleBorders;
 
   DefaultButtonComponent({
     Key? key,
@@ -21,6 +24,9 @@ class DefaultButtonComponent extends StatelessWidget {
     this.onFocusChange,
     this.onHover,
     this.onLongPress,
+    this.primary,
+    this.secondary,
+    required this.toggleBorders,
     required this.onPressed,
     required this.child,
   }) : super(key: key);
@@ -43,11 +49,12 @@ class DefaultButtonComponent extends StatelessWidget {
       autofocus: autofocus ?? false,
       clipBehavior: clipBehavior ?? Clip.none,
       style: ElevatedButton.styleFrom(
-        backgroundColor: secondaryColor,
+        backgroundColor: primary ?? secondaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(28),
+          side: toggleBorders! ? BorderSide(color: secondary ?? secondaryColor) : BorderSide(color: Colors.transparent),
         ),
-        textStyle: GoogleFonts.montserrat(fontSize: 28, fontWeight: FontWeight.w600),
+        textStyle: GoogleFonts.montserrat(fontSize: 24, fontWeight: FontWeight.w600),
         foregroundColor: Color(Colors.black.value),
       ),
       child: child,

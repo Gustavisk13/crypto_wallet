@@ -73,6 +73,7 @@ class RegisterView extends StatelessWidget {
                   width: 180,
                   height: 65,
                   child: DefaultButtonComponent(
+                    toggleBorders: false,
                     child: const Text('CADASTRAR'),
                     onPressed: null,
                   ),

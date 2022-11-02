@@ -1,3 +1,4 @@
+import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -12,7 +13,7 @@ class ListCoinsView extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: baseColor,
-      body: Container(child: Center(child: Text('ListCoins'))),
+      body: Container(child: Center(child: DefaultTitleComponent(title: 'ListCoins'))),
     ));
   }
 }

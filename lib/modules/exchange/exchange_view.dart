@@ -1,3 +1,4 @@
+import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,7 +14,7 @@ class ExchangeView extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: baseColor,
-      body: Container(child: Center(child: Text('Exchange'))),
+      body: Container(child: Center(child: DefaultTitleComponent(title: 'Exchange'))),
     ));
   }
 }

@@ -33,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  carousel_slider:
+    dependency: "direct main"
+    description:
+      name: carousel_slider
+      sha256: "869a3f4f2ad0e8d029d9cefd20d2cafd0a50847b74e7aab3a8eec662b0c7d2ee"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.1"
   characters:
     dependency: transitive
     description:
@@ -232,6 +240,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.0"
   js:
     dependency: transitive
     description:
@@ -477,6 +493,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  syncfusion_flutter_charts:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_charts
+      sha256: "41c5761fe81607ca9fc55973e4c765fb77b2f20057ab6e2d89f65a923bed446d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "20.3.52"
+  syncfusion_flutter_core:
+    dependency: transitive
+    description:
+      name: syncfusion_flutter_core
+      sha256: abcb341020044accfc7a84a6b7324e7b3cba7adeb487b4e4c4acd797c826a9ac
+      url: "https://pub.dev"
+    source: hosted
+    version: "20.3.52"
   term_glyph:
     dependency: transitive
     description:

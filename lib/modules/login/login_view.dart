@@ -102,6 +102,7 @@ class LoginView extends StatelessWidget {
                   child: Obx(
                     () => !loginController.loadingAuth.value
                         ? DefaultButtonComponent(
+                            toggleBorders: false,
                             onPressed: () {
                               //loginController.validateLoginInputs(username, password);
                               loginController.autenticar(context);
@@ -110,7 +111,7 @@ class LoginView extends StatelessWidget {
                               "ENTRAR",
                             ),
                           )
-                        : DefaultButtonComponent(onPressed: () {}, child: const LoadingComponent()),
+                        : DefaultButtonComponent(onPressed: () {}, toggleBorders: false, child: const LoadingComponent()),
                   ),
                 ),
                 const SizedBox(
