@@ -1,6 +1,7 @@
 import 'package:crypto_wallet/global/models/autenticacao_model.dart';
 import 'package:crypto_wallet/global/services/authentication/repository/autenticacao_repository.dart';
-import 'package:crypto_wallet/src/view/home.dart';
+import 'package:crypto_wallet/modules/home/home_view.dart';
+import 'package:crypto_wallet/src/view/root.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +38,9 @@ class LoginController extends GetxController {
     try {
       if (await autenticacaoRepository.login(autenticacao)) {
         autenticado.value = true;
-        Get.to(() => const HomeView());
+        Get.to(() => Root(
+              index: 0,
+            ));
       }
       loadingAuth.value = false;
     } catch (e) {

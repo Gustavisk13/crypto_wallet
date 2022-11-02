@@ -1,12 +1,12 @@
 import 'package:crypto_wallet/global/common/components/default_button_component.dart';
 import 'package:crypto_wallet/global/common/components/default_input_component.dart';
-import 'package:crypto_wallet/src/shared/components/bottom_bar.dart';
+import 'package:crypto_wallet/global/common/components/bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../utils/styles.dart';
+import '../../src/utils/styles.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

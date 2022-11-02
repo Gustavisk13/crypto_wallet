@@ -1,9 +1,9 @@
 import 'package:crypto_wallet/global/common/components/default_button_component.dart';
 import 'package:crypto_wallet/global/common/components/default_input_component.dart';
 import 'package:crypto_wallet/global/common/components/loading_component.dart';
-import 'package:crypto_wallet/src/controller/login/login_controller.dart';
+import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
 import 'package:crypto_wallet/src/utils/styles.dart';
-import 'package:crypto_wallet/src/view/register.dart';
+import 'package:crypto_wallet/modules/register/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

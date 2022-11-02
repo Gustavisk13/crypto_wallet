@@ -32,7 +32,7 @@ class _CryptoWalletAppState extends State<CryptoWalletApp> {
           ) */
       ),
       initialRoute: '/login',
-      getPages: appRoutes,
+      getPages: AppRoutes.appRoutes,
       unknownRoute: GetPage(
         name: '/notfound',
         page: () => Scaffold(
