@@ -20,6 +20,7 @@ class _CryptoWalletAppState extends State<CryptoWalletApp> {
       theme: NormalTheme.getTheme(context),
       initialRoute: '/login',
       getPages: AppRoutes.appRoutes,
+      debugShowCheckedModeBanner: false,
       unknownRoute: GetPage(
         name: '/notfound',
         page: () => Scaffold(
