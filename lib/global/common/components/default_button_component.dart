@@ -15,6 +15,7 @@ class DefaultButtonComponent extends StatelessWidget {
   final Color? primary;
   final Color? secondary;
   final bool? toggleBorders;
+  final double? borderWidth;
 
   DefaultButtonComponent({
     Key? key,
@@ -26,6 +27,7 @@ class DefaultButtonComponent extends StatelessWidget {
     this.onLongPress,
     this.primary,
     this.secondary,
+    this.borderWidth,
     required this.toggleBorders,
     required this.onPressed,
     required this.child,
@@ -52,7 +54,9 @@ class DefaultButtonComponent extends StatelessWidget {
         backgroundColor: primary ?? secondaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(28),
-          side: toggleBorders! ? BorderSide(color: secondary ?? secondaryColor) : BorderSide(color: Colors.transparent),
+          side: toggleBorders!
+              ? BorderSide(color: secondary ?? secondaryColor, width: borderWidth ?? 1)
+              : BorderSide(color: Colors.transparent),
         ),
         textStyle: GoogleFonts.montserrat(fontSize: 24, fontWeight: FontWeight.w600),
         foregroundColor: Color(Colors.black.value),

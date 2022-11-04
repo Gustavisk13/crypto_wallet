@@ -19,15 +19,21 @@ class Root extends StatelessWidget {
         rootController.currentIndex(index);
       }
     });
-    return Obx(() => Scaffold(
-          backgroundColor: baseColor,
-          body: rootController.currentPage(),
-          bottomNavigationBar: BottomBar(
-            initialActiveIndex: rootController.currentIndex.value,
-            onTap: (index) {
-              rootController.currentIndex(index);
-            },
+    return Obx(() => WillPopScope(
+          child: Scaffold(
+            backgroundColor: baseColor,
+            body: rootController.currentPage(),
+            bottomNavigationBar: BottomBar(
+              initialActiveIndex: rootController.currentIndex.value,
+              onTap: (index) {
+                rootController.currentIndex(index);
+              },
+            ),
           ),
+          onWillPop: () async {
+            await rootController.confirmExit(context);
+            return false;
+          },
         ));
   }
 }
