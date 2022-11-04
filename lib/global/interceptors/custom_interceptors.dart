@@ -1,4 +1,6 @@
 import 'package:crypto_wallet/global/models/autenticacao_model.dart';
+import 'package:crypto_wallet/global/utils/snackbar_hancdler.dart';
+import 'package:crypto_wallet/global/utils/status_code.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
 
@@ -14,8 +16,20 @@ class CustomInterceptors extends InterceptorsWrapper {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    if (err.response?.statusCode == 401) {
-      getx.Get.offAllNamed('/login');
+    if (err.response?.statusCode == StatusCode.badRequest) {
+      getx.Get.showSnackbar(SnackbarHandler.showSnackbarError(err.response!.data['error']['user_authentication']));
+    }
+
+    if (err.response?.statusCode == StatusCode.unauthorized) {
+      getx.Get.showSnackbar(SnackbarHandler.showSnackbarError(err.response!.data['error']['user_authentication']));
+    }
+
+    if (err.response?.statusCode == StatusCode.forbidden) {
+      getx.Get.showSnackbar(SnackbarHandler.showSnackbarError(err.response!.data['error']['user_authentication']));
+    }
+
+    if (err.response?.statusCode == StatusCode.internalServerError) {
+      getx.Get.showSnackbar(SnackbarHandler.showSnackbarError(err.response!.data['error']['user_authentication']));
     }
     return super.onError(err, handler);
   }

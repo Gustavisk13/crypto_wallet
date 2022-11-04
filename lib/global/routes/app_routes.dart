@@ -16,11 +16,12 @@ class AppRoutes {
     GetPage(name: "/register", page: () => RegisterView()),
     GetPage(name: "/eula", page: () => EulaView()),
     GetPage(
-        name: "/root/:index",
-        page: () => Root(
-              index: int.parse(Get.parameters['index']!),
-            ),
-        binding: RootBinding()),
+      name: "/root/:index",
+      page: () => Root(
+        index: int.parse(Get.parameters['index']!),
+      ),
+      binding: RootBinding(),
+    ),
     GetPage(name: "/home", page: () => const HomeView()),
     GetPage(name: "/exchange", page: () => const ExchangeView()),
     GetPage(name: "/add", page: () => const AddView()),

@@ -23,11 +23,19 @@ class LoginController extends GetxController {
 
   var autenticado = false.obs;
 
-  validateInput(String value) {
-    if (value.isNotEmpty) {
-      validateUserInput.value = true;
-    } else {
-      validateUserInput.value = false;
+  validateInput(String value, String type) {
+    if (type == 'username') {
+      if (value.isEmpty) {
+        validateUserInput.value = false;
+      } else {
+        validateUserInput.value = true;
+      }
+    } else if (type == 'password') {
+      if (value.isEmpty) {
+        validatePasswordInput.value = false;
+      } else {
+        validatePasswordInput.value = true;
+      }
     }
   }
 
@@ -38,14 +46,16 @@ class LoginController extends GetxController {
     try {
       if (await autenticacaoRepository.login(autenticacao)) {
         autenticado.value = true;
-        Get.to(() => Root(
-              index: 0,
-            ));
+        Get.to(
+            () => Root(
+                  index: 0,
+                ),
+            transition: Transition.fadeIn,
+            duration: Duration(milliseconds: 500));
       }
       loadingAuth.value = false;
     } catch (e) {
       loadingAuth.value = false;
-      Get.snackbar('Error', e.toString());
     }
   }
 

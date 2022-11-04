@@ -42,13 +42,11 @@ class RegisterView extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 271,
-                  child: Obx(
-                    () => DefaultInputComponent(
-                      label: 'Senha',
-                      validated: true,
-                      enableSuffixIcon: true,
-                      suffixIcon: const Icon(Icons.remove_red_eye),
-                    ),
+                  child: DefaultInputComponent(
+                    label: 'Senha',
+                    validated: true,
+                    enableSuffixIcon: true,
+                    suffixIcon: const Icon(Icons.remove_red_eye),
                   ),
                 ),
                 const SizedBox(
@@ -56,14 +54,12 @@ class RegisterView extends StatelessWidget {
                 ),
                 SizedBox(
                   width: 271,
-                  child: Obx(
-                    () => DefaultInputComponent(
-                      label: 'Confirmar Senha',
-                      validated: true,
-                      textInputAction: TextInputAction.done,
-                      enableSuffixIcon: true,
-                      suffixIcon: const Icon(Icons.remove_red_eye),
-                    ),
+                  child: DefaultInputComponent(
+                    label: 'Confirmar Senha',
+                    validated: true,
+                    textInputAction: TextInputAction.done,
+                    enableSuffixIcon: true,
+                    suffixIcon: const Icon(Icons.remove_red_eye),
                   ),
                 ),
                 const SizedBox(

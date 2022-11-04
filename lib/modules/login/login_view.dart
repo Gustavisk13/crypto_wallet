@@ -36,11 +36,11 @@ class LoginView extends StatelessWidget {
                         errorText: 'Usuário não pode ser vazio',
                         enableSuffixIcon: false,
                         onFieldSubmitted: (value) {
-                          loginController.validateInput(value);
+                          loginController.validateInput(value, 'username');
                           loginController.username = value;
                         },
                         onChanged: (value) {
-                          loginController.validateInput(value);
+                          loginController.validateInput(value, 'username');
                           loginController.username = value;
                         },
                       )),
@@ -65,11 +65,11 @@ class LoginView extends StatelessWidget {
                       },
                       suffixIcon: const Icon(Icons.remove_red_eye),
                       onFieldSubmitted: (value) {
-                        loginController.validateInput(value);
+                        loginController.validateInput(value, 'password');
                         loginController.password = value;
                       },
                       onChanged: (value) async {
-                        loginController.validateInput(value);
+                        loginController.validateInput(value, 'password');
                         loginController.password = value;
                         await Future.delayed(const Duration(milliseconds: 100));
                         loginController.forgotPassword.value = true;
