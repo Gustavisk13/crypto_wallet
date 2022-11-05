@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 
 class SnackbarHandler {
@@ -8,9 +11,9 @@ class SnackbarHandler {
       message: message,
       snackPosition: SnackPosition.TOP,
       backgroundColor: Colors.red,
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       borderRadius: 10,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       isDismissible: true,
       dismissDirection: DismissDirection.horizontal,
       forwardAnimationCurve: Curves.easeOutBack,

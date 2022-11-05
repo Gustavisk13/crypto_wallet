@@ -1,14 +1,21 @@
-import 'package:crypto_wallet/global/common/components/default_button_component.dart';
-import 'package:crypto_wallet/global/common/components/default_input_component.dart';
-import 'package:crypto_wallet/global/common/components/loading_component.dart';
-import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
-import 'package:crypto_wallet/global/utils/styles.dart';
-import 'package:crypto_wallet/modules/register/register_view.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Project imports:
+import 'package:crypto_wallet/global/common/components/default_button_component.dart';
+import 'package:crypto_wallet/global/common/components/default_input_component.dart';
+import 'package:crypto_wallet/global/common/components/loading_component.dart';
+import 'package:crypto_wallet/global/utils/styles.dart';
+import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
+import 'package:crypto_wallet/modules/register/register_view.dart';
+
 class LoginView extends StatelessWidget {
+  const LoginView({super.key});
+
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
@@ -22,7 +29,11 @@ class LoginView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 271, width: 271, child: Image(image: AssetImage("lib/assets/images/logo.png"))),
+                const SizedBox(
+                    height: 271,
+                    width: 271,
+                    child:
+                        Image(image: AssetImage("lib/assets/images/logo.png"))),
                 const SizedBox(
                   height: 44.68,
                 ),
@@ -59,7 +70,9 @@ class LoginView extends StatelessWidget {
                       errorText: 'Senha não pode ser vazia',
                       textInputAction: TextInputAction.done,
                       enableSuffixIcon: true,
-                      suffixIconColor: !loginController.passwordVisible.value ? Colors.white : Colors.grey,
+                      suffixIconColor: !loginController.passwordVisible.value
+                          ? Colors.white
+                          : Colors.grey,
                       iconOnTap: () {
                         loginController.showPassword();
                       },
@@ -83,13 +96,17 @@ class LoginView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           AnimatedOpacity(
-                            opacity: loginController.forgotPassword.value ? 1 : 0,
+                            opacity:
+                                loginController.forgotPassword.value ? 1 : 0,
                             duration: const Duration(milliseconds: 300),
                             child: TextButton(
                               onPressed: () {},
                               child: Text(
                                 "Esqueceu sua senha?",
-                                style: GoogleFonts.montserrat(color: Colors.white, fontSize: 14, fontWeight: FontWeight.normal),
+                                style: GoogleFonts.montserrat(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal),
                               ),
                             ),
                           ),
@@ -111,7 +128,10 @@ class LoginView extends StatelessWidget {
                               "ENTRAR",
                             ),
                           )
-                        : DefaultButtonComponent(onPressed: () {}, toggleBorders: false, child: const LoadingComponent()),
+                        : DefaultButtonComponent(
+                            onPressed: () {},
+                            toggleBorders: false,
+                            child: const LoadingComponent()),
                   ),
                 ),
                 const SizedBox(
@@ -122,7 +142,10 @@ class LoginView extends StatelessWidget {
                   children: [
                     Text(
                       "Não tem uma conta?",
-                      style: GoogleFonts.montserrat(color: Colors.white, fontSize: 18, fontWeight: FontWeight.normal),
+                      style: GoogleFonts.montserrat(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal),
                     ),
                     TextButton(
                       onPressed: () {
@@ -132,7 +155,10 @@ class LoginView extends StatelessWidget {
                       },
                       child: Text(
                         "CADASTRE-SE",
-                        style: GoogleFonts.montserrat(color: secondaryColor, fontSize: 18, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.montserrat(
+                            color: secondaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],

@@ -1,14 +1,19 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:crypto_wallet/global/common/components/default_button_component.dart';
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/modules/home/widgets/coin_card_widget.dart';
 import 'package:crypto_wallet/modules/root/controllers/root_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 
 class CoinMainCard extends StatelessWidget {
+  const CoinMainCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +28,7 @@ class CoinMainCard extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           child: Column(
             children: [
-              FittedBox(
+              const FittedBox(
                 fit: BoxFit.scaleDown,
                 child: CoinCard(),
               ),
@@ -53,7 +58,7 @@ class CoinMainCard extends StatelessWidget {
                       rootController.changePage(1);
                     },
                     toggleBorders: true,
-                    child: Text('Abrir'),
+                    child: const Text('Abrir'),
                   ),
                   const SizedBox(
                     width: 10,

@@ -1,9 +1,15 @@
+// Flutter imports:
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:crypto_wallet/global/models/autenticacao_model.dart';
 import 'package:crypto_wallet/global/services/authentication/repository/autenticacao_repository.dart';
-import 'package:crypto_wallet/modules/home/home_view.dart';
 import 'package:crypto_wallet/modules/root/root.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   var forgotPassword = false.obs;
@@ -51,7 +57,7 @@ class LoginController extends GetxController {
                   index: 0,
                 ),
             transition: Transition.fadeIn,
-            duration: Duration(milliseconds: 500));
+            duration: const Duration(milliseconds: 500));
       }
       loadingAuth.value = false;
     } catch (e) {
@@ -63,7 +69,6 @@ class LoginController extends GetxController {
     passwordVisible.value = false;
     await Future.delayed(const Duration(seconds: 2));
     passwordVisible.value = true;
-    print(passwordVisible.value);
   }
 
   bool isFilled(String value) {

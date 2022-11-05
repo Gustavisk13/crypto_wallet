@@ -1,6 +1,11 @@
-import 'package:crypto_wallet/global/utils/styles.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:google_fonts/google_fonts.dart';
+
+// Project imports:
+import 'package:crypto_wallet/global/utils/styles.dart';
 
 class NormalTheme {
   static ThemeData getTheme(BuildContext context) {

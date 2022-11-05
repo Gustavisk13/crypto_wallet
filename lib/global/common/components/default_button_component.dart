@@ -1,6 +1,10 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:google_fonts/google_fonts.dart';
 
+// Project imports:
 import '../../utils/styles.dart';
 
 class DefaultButtonComponent extends StatelessWidget {
@@ -17,7 +21,7 @@ class DefaultButtonComponent extends StatelessWidget {
   final bool? toggleBorders;
   final double? borderWidth;
 
-  DefaultButtonComponent({
+  const DefaultButtonComponent({
     Key? key,
     this.autofocus,
     this.clipBehavior,
@@ -55,10 +59,12 @@ class DefaultButtonComponent extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(28),
           side: toggleBorders!
-              ? BorderSide(color: secondary ?? secondaryColor, width: borderWidth ?? 1)
-              : BorderSide(color: Colors.transparent),
+              ? BorderSide(
+                  color: secondary ?? secondaryColor, width: borderWidth ?? 1)
+              : const BorderSide(color: Colors.transparent),
         ),
-        textStyle: GoogleFonts.montserrat(fontSize: 24, fontWeight: FontWeight.w600),
+        textStyle:
+            GoogleFonts.montserrat(fontSize: 24, fontWeight: FontWeight.w600),
         foregroundColor: Color(Colors.black.value),
       ),
       child: child,

@@ -1,14 +1,21 @@
-import 'package:crypto_wallet/global/common/components/default_button_component.dart';
-import 'package:crypto_wallet/global/common/components/default_input_component.dart';
-import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
-import 'package:crypto_wallet/global/utils/styles.dart';
-import 'package:crypto_wallet/modules/eula/eula_view.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Project imports:
+import 'package:crypto_wallet/global/common/components/default_button_component.dart';
+import 'package:crypto_wallet/global/common/components/default_input_component.dart';
+import 'package:crypto_wallet/global/utils/styles.dart';
+import 'package:crypto_wallet/modules/eula/eula_view.dart';
+import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
+
 class RegisterView extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());
+
+  RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,56 +29,62 @@ class RegisterView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(height: 180, width: 271, child: Image(image: AssetImage("lib/assets/images/logo.png"))),
+                const SizedBox(
+                    height: 180,
+                    width: 271,
+                    child:
+                        Image(image: AssetImage("lib/assets/images/logo.png"))),
                 const SizedBox(
                   height: 44.68,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 271,
-                  child: DefaultInputComponent(enableSuffixIcon: false, validated: true, label: 'Nome'),
+                  child: DefaultInputComponent(
+                      enableSuffixIcon: false, validated: true, label: 'Nome'),
                 ),
                 const SizedBox(
                   height: 24,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 271,
-                  child: DefaultInputComponent(enableSuffixIcon: false, validated: true, label: 'Email'),
+                  child: DefaultInputComponent(
+                      enableSuffixIcon: false, validated: true, label: 'Email'),
                 ),
                 const SizedBox(
                   height: 24,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 271,
                   child: DefaultInputComponent(
                     label: 'Senha',
                     validated: true,
                     enableSuffixIcon: true,
-                    suffixIcon: const Icon(Icons.remove_red_eye),
+                    suffixIcon: Icon(Icons.remove_red_eye),
                   ),
                 ),
                 const SizedBox(
                   height: 24,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 271,
                   child: DefaultInputComponent(
                     label: 'Confirmar Senha',
                     validated: true,
                     textInputAction: TextInputAction.done,
                     enableSuffixIcon: true,
-                    suffixIcon: const Icon(Icons.remove_red_eye),
+                    suffixIcon: Icon(Icons.remove_red_eye),
                   ),
                 ),
                 const SizedBox(
                   height: 24,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 180,
                   height: 65,
                   child: DefaultButtonComponent(
                     toggleBorders: false,
-                    child: const Text('CADASTRAR'),
                     onPressed: null,
+                    child: Text('CADASTRAR'),
                   ),
                 ),
                 const SizedBox(
@@ -81,13 +94,19 @@ class RegisterView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Ao se cadastrar, você concorda com nosso ",
-                        style: GoogleFonts.montserrat(color: Colors.white, fontSize: 12, fontWeight: FontWeight.normal)),
+                        style: GoogleFonts.montserrat(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.normal)),
                     SelectableText(
                       onTap: () {
-                        Get.to(() => EulaView());
+                        Get.to(() => const EulaView());
                       },
                       "EULA",
-                      style: GoogleFonts.montserrat(color: secondaryColor, fontSize: 12, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.montserrat(
+                          color: secondaryColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold),
                     ),
                   ],
                 )

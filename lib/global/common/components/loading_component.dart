@@ -1,12 +1,13 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoadingComponent extends StatelessWidget {
   final double? height;
   final double? width;
   final Color? color;
 
-  const LoadingComponent({Key? key, this.height, this.width, this.color}) : super(key: key);
+  const LoadingComponent({Key? key, this.height, this.width, this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

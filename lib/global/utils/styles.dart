@@ -1,6 +1,7 @@
+// Dart imports:
 import 'dart:ui';
 
-import 'package:flutter/animation.dart';
+// Flutter imports:
 
 Color baseColor = const Color.fromRGBO(33, 33, 33, 235);
 Color baseColor2 = const Color.fromARGB(255, 50, 50, 50);

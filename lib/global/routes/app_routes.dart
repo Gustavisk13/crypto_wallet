@@ -1,3 +1,7 @@
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:crypto_wallet/global/common/bindings/root/root_bindings.dart';
 import 'package:crypto_wallet/modules/add/add_view.dart';
 import 'package:crypto_wallet/modules/eula/eula_view.dart';
@@ -8,13 +12,12 @@ import 'package:crypto_wallet/modules/login/login_view.dart';
 import 'package:crypto_wallet/modules/profile/profile_view.dart';
 import 'package:crypto_wallet/modules/register/register_view.dart';
 import 'package:crypto_wallet/modules/root/root.dart';
-import 'package:get/get.dart';
 
 class AppRoutes {
   static final appRoutes = [
-    GetPage(name: "/login", page: () => LoginView()),
+    GetPage(name: "/login", page: () => const LoginView()),
     GetPage(name: "/register", page: () => RegisterView()),
-    GetPage(name: "/eula", page: () => EulaView()),
+    GetPage(name: "/eula", page: () => const EulaView()),
     GetPage(
       name: "/root/:index",
       page: () => Root(

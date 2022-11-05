@@ -1,12 +1,17 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:crypto_wallet/modules/home/controllers/coin_carousel_controller.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+// Package imports:
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 
+// Project imports:
+import 'package:crypto_wallet/modules/home/controllers/coin_carousel_controller.dart';
+
 class CoinCarousel extends StatelessWidget {
-  CoinCarouselController controller = Get.find<CoinCarouselController>();
+  final CoinCarouselController controller = Get.find<CoinCarouselController>();
+
+  CoinCarousel({super.key});
   //TODO: the current api doesn't have the images, so i will use a placeholder
   /*  @override
   Widget build(BuildContext context) {
@@ -21,6 +26,7 @@ class CoinCarousel extends StatelessWidget {
         ));
   } */
 
+  @override
   Widget build(BuildContext context) {
     return CarouselSlider(
         items: controller.generateTemporaryItens(4),

@@ -1,15 +1,19 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+
+// Project imports:
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import 'package:crypto_wallet/global/utils/image_routes.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/modules/home/controllers/coin_carousel_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class CoinCard extends StatelessWidget {
+  const CoinCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     CoinCarouselController controller = Get.find<CoinCarouselController>();
@@ -28,15 +32,16 @@ class CoinCard extends StatelessWidget {
             padding: const EdgeInsets.all(5.0),
             child: FittedBox(
               fit: BoxFit.scaleDown,
-              child: Image(image: AssetImage(ImageRoutes.randomImage()), height: 50, width: 50),
+              child: Image(
+                  image: AssetImage(ImageRoutes.randomImage()),
+                  height: 50,
+                  width: 50),
             ),
           ),
         ),
         Expanded(
           flex: 3,
-          child: Container(
-              // ignore: prefer_const_literals_to_create_immutables
-              child: Column(children: [
+          child: Column(children: [
             DefaultTitleComponent(
               title: controller.getImageName(),
               color: Colors.black,
@@ -54,7 +59,9 @@ class CoinCard extends StatelessWidget {
                       height: 40,
                       width: 65,
                       child: SfSparkLineChart(
-                          axisLineColor: Colors.transparent, color: Colors.green, data: controller.generateRandomNumbers(15)),
+                          axisLineColor: Colors.transparent,
+                          color: Colors.green,
+                          data: controller.generateRandomNumbers(15)),
                     ),
                   ),
                 ),
@@ -65,16 +72,20 @@ class CoinCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    const DefaultTitleComponent(title: 'R\$ 2.500,00', color: Colors.black, fontSize: 16),
+                    const DefaultTitleComponent(
+                        title: 'R\$ 2.500,00',
+                        color: Colors.black,
+                        fontSize: 16),
                     const SizedBox(
                       height: 2,
                     ),
-                    const DefaultTitleComponent(title: '+ 6.77\$', color: Colors.grey, fontSize: 12),
+                    const DefaultTitleComponent(
+                        title: '+ 6.77\$', color: Colors.grey, fontSize: 12),
                   ],
                 )
               ],
             )
-          ])),
+          ]),
         )
       ]),
     );

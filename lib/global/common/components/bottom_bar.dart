@@ -1,23 +1,26 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
-import 'package:crypto_wallet/global/utils/styles.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
+
+// Package imports:
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+
+// Project imports:
+import 'package:crypto_wallet/global/utils/styles.dart';
 
 class BottomBar extends StatelessWidget {
   final int? initialActiveIndex;
   final Function? onTap;
-  const BottomBar({Key? key, this.initialActiveIndex, this.onTap}) : super(key: key);
+  const BottomBar({Key? key, this.initialActiveIndex, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey<ConvexAppBarState> _appBarKey = GlobalKey<ConvexAppBarState>();
+    GlobalKey<ConvexAppBarState> appBarKey = GlobalKey<ConvexAppBarState>();
 
     return ConvexAppBar(
       curve: Curves.easeInOut,
       backgroundColor: baseColor2,
-      key: _appBarKey,
+      key: appBarKey,
       items: const [
         TabItem(
           icon: Icons.dashboard,
@@ -33,7 +36,7 @@ class BottomBar extends StatelessWidget {
       onTap: (index) {
         if (onTap != null) {
           onTap!(index);
-          _appBarKey.currentState!.animateTo(index);
+          appBarKey.currentState!.animateTo(index);
         }
       },
     );

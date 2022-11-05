@@ -1,3 +1,4 @@
+// Dart imports:
 import 'dart:math';
 
 class ImageRoutes {
@@ -16,8 +17,8 @@ class ImageRoutes {
   static const String homecard4 = '$_imagePath/homecard-4.png';
 
   static String randomImage() {
-    final _random = Random();
-    final _images = [
+    final random = Random();
+    final images = [
       bitcoin,
       ethereum,
       litecoin,
@@ -25,6 +26,6 @@ class ImageRoutes {
       solano,
       tether,
     ];
-    return _images[_random.nextInt(_images.length)];
+    return images[random.nextInt(images.length)];
   }
 }

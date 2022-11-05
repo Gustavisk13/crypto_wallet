@@ -1,18 +1,21 @@
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:get/get.dart';
+
+// Project imports:
 import 'package:crypto_wallet/global/routes/app_routes.dart';
 import 'package:crypto_wallet/global/themes/normal_theme.dart';
-import 'package:crypto_wallet/global/utils/styles.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CryptoWalletApp extends StatefulWidget {
   const CryptoWalletApp({Key? key}) : super(key: key);
 
   @override
-  _CryptoWalletAppState createState() => _CryptoWalletAppState();
+  CryptoWalletAppState createState() => CryptoWalletAppState();
 }
 
-class _CryptoWalletAppState extends State<CryptoWalletApp> {
+class CryptoWalletAppState extends State<CryptoWalletApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -23,7 +26,7 @@ class _CryptoWalletAppState extends State<CryptoWalletApp> {
       debugShowCheckedModeBanner: false,
       unknownRoute: GetPage(
         name: '/notfound',
-        page: () => Scaffold(
+        page: () => const Scaffold(
           body: Center(
             child: Text('Page not found'),
           ),

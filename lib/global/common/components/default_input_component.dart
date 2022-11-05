@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:crypto_wallet/global/utils/styles.dart';
-import 'package:flutter/material.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+
+// Package imports:
 import 'package:google_fonts/google_fonts.dart';
+
+// Project imports:
+import 'package:crypto_wallet/global/utils/styles.dart';
 
 class DefaultInputComponent extends StatelessWidget {
   final String? label;
@@ -37,7 +40,7 @@ class DefaultInputComponent extends StatelessWidget {
   final Color? suffixIconColor;
   final bool? enableSuffixIcon;
 
-  DefaultInputComponent({
+  const DefaultInputComponent({
     Key? key,
     this.label,
     this.initialValue,
@@ -96,12 +99,15 @@ class DefaultInputComponent extends StatelessWidget {
           if (validator != null) {
             return validator!(value);
           }
+          return null;
         },
         keyboardType: keyboardType,
-        style: GoogleFonts.montserrat(color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
+        style: GoogleFonts.montserrat(
+            color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
         decoration: InputDecoration(
           errorText: validated! ? null : errorText,
-          contentPadding: const EdgeInsets.symmetric(vertical: 26, horizontal: 20),
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 26, horizontal: 20),
           filled: true,
           fillColor: baseColor2,
           labelStyle: const TextStyle(color: Colors.white, fontSize: 18),
