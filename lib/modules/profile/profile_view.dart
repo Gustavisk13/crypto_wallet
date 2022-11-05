@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/common/components/default_title_component.dart';
+import 'package:crypto_wallet/global/common/components/default_expanded_component.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 
 class ProfileView extends StatelessWidget {
@@ -13,7 +13,15 @@ class ProfileView extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       backgroundColor: baseColor,
-      body: const Center(child: DefaultTitleComponent(title: 'Profile')),
+      body: const Center(
+          child: DefaultExpandedComponent(
+        children: [
+          Text(
+            'Hello',
+            style: TextStyle(color: Colors.white),
+          )
+        ],
+      )),
     ));
   }
 }
