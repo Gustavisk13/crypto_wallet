@@ -47,6 +47,7 @@ dependencies:
   carousel_slider: ^4.1.1
   syncfusion_flutter_charts: ^20.3.52
   webview_flutter: ^3.0.4
+  import_sorter: ^4.6.0
 
 dev_dependencies:
   flutter_test:
