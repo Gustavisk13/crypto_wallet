@@ -30,14 +30,16 @@ class Root extends StatelessWidget {
     }
 
     return Obx(() => WillPopScope(
-          child: Scaffold(
-            backgroundColor: baseColor,
-            body: rootController.currentPage(),
-            bottomNavigationBar: BottomBar(
-              initialActiveIndex: rootController.currentIndex.value,
-              onTap: (index) {
-                rootController.currentIndex(index);
-              },
+          child: SafeArea(
+            child: Scaffold(
+              backgroundColor: baseColor,
+              body: rootController.currentPage(),
+              bottomNavigationBar: BottomBar(
+                initialActiveIndex: rootController.currentIndex.value,
+                onTap: (index) {
+                  rootController.currentIndex(index);
+                },
+              ),
             ),
           ),
           onWillPop: () async {

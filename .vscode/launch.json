@@ -5,21 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "crypto_wallet",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "crypto_wallet (profile mode)",
+            "name": "[DEBUG] crypto_wallet",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "args": [
+                "--dart-define=debugOptions=true",
+            ]
+            
         },
         {
-            "name": "crypto_wallet (release mode)",
+            "name": "[PROD] crypto_wallet",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
-        }
+            "args": [
+                "--dart-define=debugOptions=false",
+            ]
+            
+        },
+        
     ]
 }

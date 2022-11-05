@@ -8,8 +8,6 @@ import 'package:crypto_wallet/global/common/bindings/root/root_bindings.dart';
 // Package imports:
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
   RootBinding().dependencies();
   await Future.delayed(const Duration(milliseconds: 300));
 

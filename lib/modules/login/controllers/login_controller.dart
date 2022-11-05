@@ -49,6 +49,7 @@ class LoginController extends GetxController {
     autenticacao = AutenticacaoModel(email: username, senha: password);
 
     loadingAuth.value = true;
+
     try {
       if (await autenticacaoRepository.login(autenticacao)) {
         autenticado.value = true;
@@ -69,6 +70,17 @@ class LoginController extends GetxController {
     passwordVisible.value = false;
     await Future.delayed(const Duration(seconds: 2));
     passwordVisible.value = true;
+  }
+
+  debugAuth() {
+    autenticado.value = true;
+    loadingAuth.value = false;
+    Get.to(
+        () => Root(
+              index: 0,
+            ),
+        transition: Transition.fadeIn,
+        duration: const Duration(milliseconds: 500));
   }
 
   bool isFilled(String value) {

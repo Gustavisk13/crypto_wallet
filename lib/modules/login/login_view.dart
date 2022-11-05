@@ -16,6 +16,9 @@ import 'package:crypto_wallet/modules/register/register_view.dart';
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
+  static const String debugOptions =
+      String.fromEnvironment('debugOptions', defaultValue: 'false');
+
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
@@ -163,6 +166,21 @@ class LoginView extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
+                debugOptions == 'true'
+                    ? DefaultButtonComponent(
+                        toggleBorders: false,
+                        onPressed: () {
+                          loginController.debugAuth();
+                        },
+                        child: const Icon(
+                          Icons.bug_report,
+                          color: Colors.black,
+                        ),
+                      )
+                    : Container(),
               ],
             ),
           )),

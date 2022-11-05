@@ -27,8 +27,7 @@ class EulaView extends StatelessWidget {
                         height: 180,
                         width: 271,
                         child: Image(
-                            image:
-                                AssetImage("lib/src/assets/images/logo.png"))),
+                            image: AssetImage("lib/assets/images/logo.png"))),
                     const SizedBox(
                       height: 15,
                     ),
