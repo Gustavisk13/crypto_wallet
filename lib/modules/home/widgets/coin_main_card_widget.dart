@@ -17,53 +17,56 @@ class CoinMainCard extends StatelessWidget {
           color: baseColor2,
         ),
         width: 300,
-        child: Column(
-          children: [
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              child: CoinCard(),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            const DefaultTitleComponent(title: 'Descrição'),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: CoinCard(),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DefaultButtonComponent(
-                  onPressed: () {},
-                  toggleBorders: true,
-                  child: Text('Abrir'),
+              const SizedBox(
+                height: 10,
+              ),
+              const DefaultTitleComponent(title: 'Descrição'),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
                 ),
-                const SizedBox(
-                  width: 10,
-                ),
-                DefaultButtonComponent(
-                  onPressed: () {},
-                  toggleBorders: true,
-                  secondary: secondaryColor,
-                  primary: baseColor2,
-                  child: Icon(
-                    Icons.replay_outlined,
-                    color: secondaryColor,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  DefaultButtonComponent(
+                    onPressed: () {},
+                    toggleBorders: true,
+                    child: Text('Abrir'),
                   ),
-                ),
-              ],
-            )
-          ],
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  DefaultButtonComponent(
+                    onPressed: () {},
+                    toggleBorders: true,
+                    secondary: secondaryColor,
+                    primary: baseColor2,
+                    child: Icon(
+                      Icons.replay_outlined,
+                      color: secondaryColor,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ));
   }
 }

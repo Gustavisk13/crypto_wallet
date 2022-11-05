@@ -46,6 +46,7 @@ dependencies:
   shared_preferences: ^2.0.15
   carousel_slider: ^4.1.1
   syncfusion_flutter_charts: ^20.3.52
+  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,10 @@ flutter:
       - lib/assets/images/monero-logo.png
       - lib/assets/images/solano-logo.png
       - lib/assets/images/tether-logo.png
+      - lib/assets/images/homecard-1.png
+      - lib/assets/images/homecard-2.png
+      - lib/assets/images/homecard-3.png
+      - lib/assets/images/homecard-4.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

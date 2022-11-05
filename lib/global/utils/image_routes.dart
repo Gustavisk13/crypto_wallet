@@ -3,22 +3,27 @@ import 'dart:math';
 class ImageRoutes {
   static const String _imagePath = 'lib/assets/images';
 
-  static const String _bitcoin = '$_imagePath/bitcoin-logo.png';
-  static const String _ethereum = '$_imagePath/ethereum-logo.png';
-  static const String _litecoin = '$_imagePath/litecoin-logo.png';
-  static const String _monero = '$_imagePath/monero-logo.png';
-  static const String _solano = '$_imagePath/solano-logo.png';
-  static const String _tether = '$_imagePath/tether-logo.png';
+  static const String bitcoin = '$_imagePath/bitcoin-logo.png';
+  static const String ethereum = '$_imagePath/ethereum-logo.png';
+  static const String litecoin = '$_imagePath/litecoin-logo.png';
+  static const String monero = '$_imagePath/monero-logo.png';
+  static const String solano = '$_imagePath/solano-logo.png';
+  static const String tether = '$_imagePath/tether-logo.png';
+
+  static const String homecard1 = '$_imagePath/homecard-1.png';
+  static const String homecard2 = '$_imagePath/homecard-2.png';
+  static const String homecard3 = '$_imagePath/homecard-3.png';
+  static const String homecard4 = '$_imagePath/homecard-4.png';
 
   static String randomImage() {
     final _random = Random();
     final _images = [
-      _bitcoin,
-      _ethereum,
-      _litecoin,
-      _monero,
-      _solano,
-      _tether,
+      bitcoin,
+      ethereum,
+      litecoin,
+      monero,
+      solano,
+      tether,
     ];
     return _images[_random.nextInt(_images.length)];
   }
