@@ -12,8 +12,12 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ConvexAppBarState> _appBarKey = GlobalKey<ConvexAppBarState>();
+
     return ConvexAppBar(
+      curve: Curves.easeInOut,
       backgroundColor: baseColor2,
+      key: _appBarKey,
       items: const [
         TabItem(
           icon: Icons.dashboard,
@@ -24,10 +28,12 @@ class BottomBar extends StatelessWidget {
         TabItem(icon: Icons.list, title: 'Listagem'),
         TabItem(icon: Icons.people, title: 'Perfil'),
       ],
-      initialActiveIndex: initialActiveIndex ?? 2, //optional, default as 0
+      initialActiveIndex: initialActiveIndex ?? 2,
+      //optional, default as 0
       onTap: (index) {
         if (onTap != null) {
           onTap!(index);
+          _appBarKey.currentState!.animateTo(index);
         }
       },
     );

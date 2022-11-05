@@ -1,6 +1,7 @@
 import 'package:crypto_wallet/global/common/components/defaultDialog.dart';
 import 'package:crypto_wallet/global/common/components/default_button_component.dart';
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
+import 'package:crypto_wallet/global/routes/app_routes.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/modules/add/add_view.dart';
 import 'package:crypto_wallet/modules/exchange/exchange_view.dart';

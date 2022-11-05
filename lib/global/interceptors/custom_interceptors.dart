@@ -16,7 +16,7 @@ class CustomInterceptors extends InterceptorsWrapper {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    if (err.requestOptions.connectTimeout == 10000 && err.type == DioErrorType.connectTimeout) {
+    if (err.type == DioErrorType.connectTimeout || err.type == DioErrorType.receiveTimeout) {
       getx.Get.showSnackbar(SnackbarHandler.showSnackbarError('Erro de conexão com o servidor'));
     }
 

@@ -11,6 +11,8 @@ class Root extends StatelessWidget {
   int? index;
   Root({Key? key, this.index}) : super(key: key);
 
+  var args = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     final rootController = Get.find<RootController>();
@@ -19,6 +21,11 @@ class Root extends StatelessWidget {
         rootController.currentIndex(index);
       }
     });
+
+    if (args != 'exchange') {
+      rootController.currentIndex(0);
+    }
+
     return Obx(() => WillPopScope(
           child: Scaffold(
             backgroundColor: baseColor,

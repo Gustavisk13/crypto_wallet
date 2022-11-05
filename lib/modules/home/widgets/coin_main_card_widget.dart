@@ -2,9 +2,11 @@ import 'package:crypto_wallet/global/common/components/default_button_component.
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/modules/home/widgets/coin_card_widget.dart';
+import 'package:crypto_wallet/modules/root/controllers/root_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 
 class CoinMainCard extends StatelessWidget {
   @override
@@ -46,7 +48,10 @@ class CoinMainCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   DefaultButtonComponent(
-                    onPressed: () {},
+                    onPressed: () {
+                      RootController rootController = Get.find();
+                      rootController.changePage(1);
+                    },
                     toggleBorders: true,
                     child: Text('Abrir'),
                   ),

@@ -28,4 +28,12 @@ class AppRoutes {
     GetPage(name: "/list-coins", page: () => const ListCoinsView()),
     GetPage(name: "/profile", page: () => const ProfileView()),
   ];
+
+  static final appIndexes = [
+    "/home",
+    "/exchange",
+    "/add",
+    "/list-coins",
+    "/profile",
+  ];
 }
