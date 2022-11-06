@@ -18,32 +18,42 @@ class DefaultExpandedComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
+    return ExpansionTileTheme(
+      data: ExpansionTileThemeData(
         iconColor: secondaryColor,
         collapsedIconColor: secondaryColor,
         tilePadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
         childrenPadding: const EdgeInsets.only(left: 6),
+        shape: const Border(
+          bottom: BorderSide(
+            color: Colors.transparent,
+            width: 1,
+          ),
+        ),
         collapsedShape: const Border(
           bottom: BorderSide(
             color: Colors.white,
             width: 1,
           ),
         ),
-        title: Row(
-          children: [
-            icon ?? const SizedBox(),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              title ?? '',
-              style: GoogleFonts.montserrat(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white),
-            ),
-          ],
-        ),
-        children: children!);
+      ),
+      child: ExpansionTile(
+          title: Row(
+            children: [
+              icon ?? const SizedBox(),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                title ?? '',
+                style: GoogleFonts.montserrat(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
+              ),
+            ],
+          ),
+          children: children!),
+    );
   }
 }
