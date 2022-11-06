@@ -24,18 +24,6 @@ class DefaultExpandedComponent extends StatelessWidget {
         collapsedIconColor: secondaryColor,
         tilePadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
         childrenPadding: const EdgeInsets.only(left: 6),
-        shape: const Border(
-          bottom: BorderSide(
-            color: Colors.transparent,
-            width: 1,
-          ),
-        ),
-        collapsedShape: const Border(
-          bottom: BorderSide(
-            color: Colors.white,
-            width: 1,
-          ),
-        ),
       ),
       child: ExpansionTile(
           title: Row(
