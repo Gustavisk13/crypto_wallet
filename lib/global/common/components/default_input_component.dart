@@ -33,12 +33,12 @@ class DefaultInputComponent extends StatelessWidget {
   final bool? readOnly;
   final bool? autofocus;
   final InputDecoration? decoration;
-  final double? height;
   final bool? validated;
   final FocusNode? focusNode;
   final Function? iconOnTap;
   final Color? suffixIconColor;
   final bool? enableSuffixIcon;
+  final int? minLines;
 
   const DefaultInputComponent({
     Key? key,
@@ -64,10 +64,10 @@ class DefaultInputComponent extends StatelessWidget {
     this.decoration,
     this.prefixText,
     this.errorText,
-    this.height,
     this.focusNode,
     this.iconOnTap,
     this.suffixIconColor,
+    this.minLines,
     required this.enableSuffixIcon,
     required this.validated,
   }) : super(key: key);
@@ -104,6 +104,7 @@ class DefaultInputComponent extends StatelessWidget {
         keyboardType: keyboardType,
         style: GoogleFonts.montserrat(
             color: Colors.white, fontSize: 20, fontWeight: FontWeight.normal),
+        minLines: minLines,
         decoration: InputDecoration(
           errorText: validated! ? null : errorText,
           contentPadding:

@@ -48,6 +48,7 @@ dependencies:
   syncfusion_flutter_charts: ^20.3.52
   webview_flutter: ^3.0.4
   import_sorter: ^4.6.0
+  mailer: ^5.2.0
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +89,7 @@ flutter:
       - lib/assets/images/homecard-2.png
       - lib/assets/images/homecard-3.png
       - lib/assets/images/homecard-4.png
+      - lib/assets/images/profile-effigy.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

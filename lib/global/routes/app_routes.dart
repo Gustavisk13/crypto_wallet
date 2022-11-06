@@ -2,6 +2,7 @@
 import 'package:get/get.dart';
 
 // Project imports:
+import 'package:crypto_wallet/global/common/bindings/profile/profile_bindings.dart';
 import 'package:crypto_wallet/global/common/bindings/root/root_bindings.dart';
 import 'package:crypto_wallet/modules/add/add_view.dart';
 import 'package:crypto_wallet/modules/eula/eula_view.dart';
@@ -29,7 +30,10 @@ class AppRoutes {
     GetPage(name: "/exchange", page: () => const ExchangeView()),
     GetPage(name: "/add", page: () => const AddView()),
     GetPage(name: "/list-coins", page: () => const ListCoinsView()),
-    GetPage(name: "/profile", page: () => const ProfileView()),
+    GetPage(
+        name: "/profile",
+        page: () => const ProfileView(),
+        binding: ProfileBindings()),
   ];
 
   static final appIndexes = [
