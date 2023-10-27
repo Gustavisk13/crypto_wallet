@@ -2,50 +2,90 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/common/components/bottom_bar.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
-import 'package:crypto_wallet/modules/root/controllers/root_controller.dart';
+import 'package:crypto_wallet/modules/root/widgets/root_navigation_bar_item.dart';
 
-// ignore: must_be_immutable
-class Root extends StatelessWidget {
-  int? index;
-  Root({Key? key, this.index}) : super(key: key);
+class RootPage extends StatefulWidget {
+  final Widget child;
 
-  var args = Get.arguments;
+  const RootPage({super.key, required this.child});
+
+  @override
+  State<RootPage> createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
+  int get currentIndex =>
+      _locationToTabIndex(location: GoRouter.of(context).location);
+
+  int _locationToTabIndex({required String location}) {
+    final index =
+        tabs.indexWhere((t) => location.startsWith(t.initialLocation));
+    return index < 0 ? 0 : index;
+  }
+
+  void onItemTapped({required int tabIndex}) {
+    if (tabIndex != currentIndex) {
+      context.go(tabs[tabIndex].initialLocation);
+    }
+  }
+
+  final tabs = const [
+    RootNavigationBarItem(
+      label: 'Home',
+      icon: Icon(Icons.dashboard),
+      activeIcon: Icon(
+        Icons.dashboard,
+      ),
+      initialLocation: '/home',
+    ),
+    RootNavigationBarItem(
+      label: 'Exchange',
+      icon: Icon(Icons.currency_bitcoin),
+      activeIcon: Icon(
+        Icons.currency_bitcoin,
+      ),
+      initialLocation: '/exchange',
+    ),
+    RootNavigationBarItem(
+      label: 'Coins',
+      icon: Icon(Icons.monetization_on),
+      activeIcon: Icon(
+        Icons.monetization_on,
+      ),
+      initialLocation: '/list-coins',
+    ),
+    RootNavigationBarItem(
+      label: 'Profile',
+      icon: Icon(Icons.people),
+      activeIcon: Icon(Icons.people),
+      initialLocation: '/profile',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final rootController = Get.find<RootController>();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (index != null) {
-        rootController.currentIndex(index);
-      }
-    });
-
-    if (args != 'exchange') {
-      rootController.currentIndex(0);
-    }
-
-    return Obx(() => WillPopScope(
-          child: SafeArea(
-            child: Scaffold(
-              backgroundColor: baseColor,
-              body: rootController.currentPage(),
-              bottomNavigationBar: BottomBar(
-                initialActiveIndex: rootController.currentIndex.value,
-                onTap: (index) {
-                  rootController.currentIndex(index);
-                },
-              ),
-            ),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: baseColor2,
+        body: widget.child,
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            border: Border(top: BorderSide(color: secondaryColor, width: 2)),
           ),
-          onWillPop: () async {
-            await rootController.confirmExit(context);
-            return false;
-          },
-        ));
+          child: BottomNavigationBar(
+              backgroundColor: baseColor,
+              selectedItemColor: secondaryColor,
+              unselectedItemColor: Colors.grey,
+              type: BottomNavigationBarType.fixed,
+              items: tabs,
+              currentIndex: currentIndex,
+              onTap: (index) => onItemTapped(tabIndex: index)),
+        ),
+      ),
+    );
   }
 }

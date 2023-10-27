@@ -1,15 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:get/get.dart';
-
 // Project imports:
 import 'package:crypto_wallet/global/common/components/default_button_component.dart';
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/modules/home/widgets/coin_card_widget.dart';
 import 'package:crypto_wallet/modules/root/controllers/root_controller.dart';
+
+// Package imports:
 
 class CoinMainCard extends StatelessWidget {
   const CoinMainCard({super.key});
@@ -54,7 +53,7 @@ class CoinMainCard extends StatelessWidget {
                 children: [
                   DefaultButtonComponent(
                     onPressed: () {
-                      RootController rootController = Get.find();
+                      RootController rootController = RootController();
                       rootController.changePage(1);
                     },
                     toggleBorders: true,

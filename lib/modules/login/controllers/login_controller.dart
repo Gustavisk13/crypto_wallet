@@ -3,20 +3,18 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:get/get.dart';
-
 // Project imports:
 import 'package:crypto_wallet/global/models/autenticacao_model.dart';
 import 'package:crypto_wallet/global/services/authentication/repository/autenticacao_repository.dart';
-import 'package:crypto_wallet/modules/root/root.dart';
 
-class LoginController extends GetxController {
-  var forgotPassword = false.obs;
-  var passwordVisible = true.obs;
-  var validateUserInput = true.obs;
-  var validatePasswordInput = true.obs;
-  var loadingAuth = false.obs;
+// Package imports:
+
+class LoginController {
+  var forgotPassword = false;
+  var passwordVisible = true;
+  var validateUserInput = true;
+  var validatePasswordInput = true;
+  var loadingAuth = false;
 
   final TextEditingController textUsernameController = TextEditingController();
   final TextEditingController textPasswordController = TextEditingController();
@@ -27,20 +25,20 @@ class LoginController extends GetxController {
   String username = '';
   String password = '';
 
-  var autenticado = false.obs;
+  var autenticado = false;
 
   validateInput(String value, String type) {
     if (type == 'username') {
       if (value.isEmpty) {
-        validateUserInput.value = false;
+        validateUserInput = false;
       } else {
-        validateUserInput.value = true;
+        validateUserInput = true;
       }
     } else if (type == 'password') {
       if (value.isEmpty) {
-        validatePasswordInput.value = false;
+        validatePasswordInput = false;
       } else {
-        validatePasswordInput.value = true;
+        validatePasswordInput = true;
       }
     }
   }
@@ -48,39 +46,39 @@ class LoginController extends GetxController {
   autenticar(context) async {
     autenticacao = AutenticacaoModel(email: username, senha: password);
 
-    loadingAuth.value = true;
+    loadingAuth = true;
 
     try {
       if (await autenticacaoRepository.login(autenticacao)) {
-        autenticado.value = true;
-        Get.to(
-            () => Root(
-                  index: 0,
-                ),
-            transition: Transition.fadeIn,
-            duration: const Duration(milliseconds: 500));
+        autenticado = true;
+        // Get.to(
+        //     () => Root(
+        //           index: 0,
+        //         ),
+        //     transition: Transition.fadeIn,
+        //     duration: const Duration(milliseconds: 500));
       }
-      loadingAuth.value = false;
+      loadingAuth = false;
     } catch (e) {
-      loadingAuth.value = false;
+      loadingAuth = false;
     }
   }
 
   showPassword() async {
-    passwordVisible.value = false;
+    passwordVisible = false;
     await Future.delayed(const Duration(seconds: 2));
-    passwordVisible.value = true;
+    passwordVisible = true;
   }
 
   debugAuth() {
-    autenticado.value = true;
-    loadingAuth.value = false;
-    Get.to(
-        () => Root(
-              index: 0,
-            ),
-        transition: Transition.fadeIn,
-        duration: const Duration(milliseconds: 500));
+    autenticado = true;
+    loadingAuth = false;
+    // Get.to(
+    //     () => Root(
+    //           index: 0,
+    //         ),
+    //     transition: Transition.fadeIn,
+    //     duration: const Duration(milliseconds: 500));
   }
 
   bool isFilled(String value) {

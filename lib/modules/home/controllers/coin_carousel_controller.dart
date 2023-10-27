@@ -4,13 +4,12 @@ import 'dart:math';
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-import 'package:get/get.dart';
-
 // Project imports:
 import 'package:crypto_wallet/modules/home/widgets/coin_main_card_widget.dart';
 
-class CoinCarouselController extends GetxController {
+// Package imports:
+
+class CoinCarouselController {
   List<Widget> generateTemporaryItens(length) {
     List<Widget> itens = [];
     for (var i = 0; i < length; i++) {

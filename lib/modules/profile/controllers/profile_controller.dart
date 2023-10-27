@@ -1,7 +1,6 @@
 // Package imports:
-import 'package:get/get.dart';
 
-class ProfileController extends GetxController {
-  var notificationSwitchValue = false.obs;
-  var emailSwitchValue = false.obs;
+class ProfileController {
+  var notificationSwitchValue = false;
+  var emailSwitchValue = false;
 }

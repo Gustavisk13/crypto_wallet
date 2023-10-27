@@ -2,14 +2,15 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
 import 'package:crypto_wallet/global/utils/styles.dart';
 
-class EulaView extends StatelessWidget {
-  const EulaView({super.key});
+// Package imports:
+
+class EulaPage extends StatelessWidget {
+  const EulaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class EulaView extends StatelessWidget {
           backgroundColor: baseColor,
           body: Container(
               padding: const EdgeInsets.only(top: 40),
-              width: Get.width,
+              // width: Get.width,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -75,7 +76,7 @@ class EulaView extends StatelessWidget {
                       height: 65,
                       child: ElevatedButton(
                         onPressed: () {
-                          Get.back();
+                          // Get.back();
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: secondaryColor,

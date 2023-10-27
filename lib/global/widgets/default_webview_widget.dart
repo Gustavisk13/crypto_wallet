@@ -1,14 +1,16 @@
 // Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 // Project imports:
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
-import 'package:crypto_wallet/global/utils/snackbar_hancdler.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
+
+// Package imports:
 
 class DefaultWebView extends StatelessWidget {
   final String url;
@@ -42,9 +44,8 @@ class DefaultWebView extends StatelessWidget {
           initialUrl: url,
           javascriptMode: JavascriptMode.unrestricted,
           onWebResourceError: (error) {
-            Get.back();
-            Get.showSnackbar(
-                SnackbarHandler.showSnackbarError(error.description));
+            // Get.back();
+            // Get.showSnackbar(SnackbarHandler.showSnackbarError(error.description));
           },
         ),
       ),

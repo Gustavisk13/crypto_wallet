@@ -2,43 +2,42 @@
 import 'package:flutter/widgets.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 
-class ContactFormController extends GetxController {
+class ContactFormController {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var messageController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
-  var isLoading = false.obs;
-  var isMailLoading = false.obs;
+  var isLoading = false;
+  var isMailLoading = false;
 
   String name = '';
   String email = '';
   String message = '';
 
-  var validateUserInput = true.obs;
-  var validateEmailInput = true.obs;
-  var validateMessageInput = true.obs;
+  var validateUserInput = true;
+  var validateEmailInput = true;
+  var validateMessageInput = true;
 
   validateInput(String value, String type) {
     if (type == 'name') {
       if (value.isEmpty) {
-        validateUserInput.value = false;
+        validateUserInput = false;
       } else {
-        validateUserInput.value = true;
+        validateUserInput = true;
       }
     } else if (type == 'email') {
       if (value.isEmpty) {
-        validateEmailInput.value = false;
+        validateEmailInput = false;
       } else {
-        validateEmailInput.value = true;
+        validateEmailInput = true;
       }
     } else if (type == 'message') {
       if (value.isEmpty) {
-        validateMessageInput.value = false;
+        validateMessageInput = false;
       } else {
-        validateMessageInput.value = true;
+        validateMessageInput = true;
       }
     }
   }

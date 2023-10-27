@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 // Project imports:
@@ -11,15 +10,17 @@ import 'package:crypto_wallet/global/utils/image_routes.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/modules/home/controllers/coin_carousel_controller.dart';
 
+// Package imports:
+
 class CoinCard extends StatelessWidget {
   const CoinCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    CoinCarouselController controller = Get.find<CoinCarouselController>();
+    CoinCarouselController controller = CoinCarouselController();
     return Container(
       height: 80,
-      width: Get.width / 1.5,
+      // width: Get.width / 1.5,
       padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -68,19 +69,23 @@ class CoinCard extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    const DefaultTitleComponent(
-                        title: 'R\$ 2.500,00',
-                        color: Colors.black,
-                        fontSize: 16),
-                    const SizedBox(
+                    DefaultTitleComponent(
+                      title: 'R\$ 2.500,00',
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                    SizedBox(
                       height: 2,
                     ),
-                    const DefaultTitleComponent(
-                        title: '+ 6.77\$', color: Colors.grey, fontSize: 12),
+                    DefaultTitleComponent(
+                      title: '+ 6.77\$',
+                      color: Colors.grey,
+                      fontSize: 12,
+                    ),
                   ],
                 )
               ],

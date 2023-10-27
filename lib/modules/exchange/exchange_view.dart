@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import '../../global/utils/styles.dart';
 
-class ExchangeView extends StatelessWidget {
-  const ExchangeView({super.key});
+class ExchangePage extends StatelessWidget {
+  const ExchangePage({super.key});
 
   @override
   Widget build(BuildContext context) {

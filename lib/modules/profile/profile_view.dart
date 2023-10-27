@@ -1,8 +1,9 @@
 // Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
@@ -11,21 +12,20 @@ import 'package:crypto_wallet/global/common/components/default_title_component.d
 import 'package:crypto_wallet/global/utils/image_routes.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 import 'package:crypto_wallet/global/widgets/default_switch.dart';
-import 'package:crypto_wallet/global/widgets/default_webview_widget.dart';
-import 'package:crypto_wallet/modules/profile/contact_form_view.dart';
 import 'package:crypto_wallet/modules/profile/controllers/profile_controller.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+// Package imports:
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ProfileController profileController = Get.put(ProfileController());
-    return Obx(
-      () => SafeArea(
-          child: Container(
+    ProfileController profileController = ProfileController();
+    return SafeArea(
+      child: Container(
         padding: const EdgeInsets.all(16),
-        width: Get.width,
+        // width: Get.width,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -61,11 +61,9 @@ class ProfileView extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white)),
                         DefaultSwitch(
-                            value:
-                                profileController.notificationSwitchValue.value,
+                            value: profileController.notificationSwitchValue,
                             onChanged: (value) {
-                              profileController.notificationSwitchValue.value =
-                                  value;
+                              profileController.notificationSwitchValue = value;
                             })
                       ],
                     ),
@@ -78,9 +76,9 @@ class ProfileView extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white)),
                         DefaultSwitch(
-                            value: profileController.emailSwitchValue.value,
+                            value: profileController.emailSwitchValue,
                             onChanged: (value) {
-                              profileController.emailSwitchValue.value = value;
+                              profileController.emailSwitchValue = value;
                             })
                       ],
                     )
@@ -99,12 +97,9 @@ class ProfileView extends StatelessWidget {
                                 color: Colors.white)),
                         IconButton(
                             onPressed: () {
-                              Get.to(
-                                  () => const DefaultWebView(
-                                      title: 'FAQ',
-                                      url:
-                                          'https://www.loremipzum.com/pt/perguntas-frequentes'),
-                                  transition: Transition.rightToLeft);
+                              // Get.to(
+                              //     () => const DefaultWebView(title: 'FAQ', url: 'https://www.loremipzum.com/pt/perguntas-frequentes'),
+                              //     transition: Transition.rightToLeft);
                             },
                             icon: Icon(
                               Icons.arrow_forward,
@@ -123,12 +118,10 @@ class ProfileView extends StatelessWidget {
                                 color: Colors.white)),
                         IconButton(
                             onPressed: () {
-                              Get.to(
-                                  const DefaultWebView(
-                                      title: 'Política de Privacidade',
-                                      url:
-                                          'https://loremipsum.io/privacy-policy/'),
-                                  transition: Transition.rightToLeft);
+                              // Get.to(
+                              //     const DefaultWebView(
+                              //         title: 'Política de Privacidade', url: 'https://loremipsum.io/privacy-policy/'),
+                              //     transition: Transition.rightToLeft);
                             },
                             icon: Icon(
                               Icons.arrow_forward,
@@ -147,8 +140,7 @@ class ProfileView extends StatelessWidget {
                                 color: Colors.white)),
                         IconButton(
                             onPressed: () {
-                              Get.to(() => const ContactFormView(),
-                                  transition: Transition.rightToLeft);
+                              // Get.to(() => const ContactFormView(), transition: Transition.rightToLeft);
                             },
                             icon: Icon(
                               Icons.arrow_forward,
@@ -172,7 +164,7 @@ class ProfileView extends StatelessWidget {
                                 color: Colors.white)),
                         IconButton(
                             onPressed: () {
-                              Get.toNamed('/eula');
+                              // Get.toNamed('/eula');
                             },
                             icon: Icon(
                               Icons.arrow_forward,
@@ -187,7 +179,7 @@ class ProfileView extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.back();
+                  // Get.back();
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -213,7 +205,7 @@ class ProfileView extends StatelessWidget {
             ],
           ),
         ),
-      )),
+      ),
     );
   }
 }

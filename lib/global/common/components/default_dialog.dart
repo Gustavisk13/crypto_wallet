@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
 import 'package:crypto_wallet/global/common/components/default_button_component.dart';
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
+
+// Package imports:
 
 class DefaultDialog extends StatelessWidget {
   //TODO - Convert to a generic dialog component with parameters for title, content, buttons, etc.
@@ -47,7 +48,7 @@ class DefaultDialog extends StatelessWidget {
         DefaultButtonComponent(
             toggleBorders: true,
             onPressed: () {
-              Get.back();
+              // Get.back();
             },
             child: const Text('No')),
       ],

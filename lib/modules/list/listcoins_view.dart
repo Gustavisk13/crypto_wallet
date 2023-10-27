@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:crypto_wallet/global/common/components/default_title_component.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
 
-class ListCoinsView extends StatelessWidget {
-  const ListCoinsView({super.key});
+class ListCoinsPage extends StatelessWidget {
+  const ListCoinsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

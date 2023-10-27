@@ -1,21 +1,23 @@
 // Flutter imports:
+
+// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
 import 'package:crypto_wallet/global/common/components/default_button_component.dart';
 import 'package:crypto_wallet/global/common/components/default_input_component.dart';
 import 'package:crypto_wallet/global/utils/styles.dart';
-import 'package:crypto_wallet/modules/eula/eula_view.dart';
 import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
 
-class RegisterView extends StatelessWidget {
-  final LoginController controller = Get.put(LoginController());
+// Package imports:
 
-  RegisterView({super.key});
+class RegisterPage extends StatelessWidget {
+  final LoginController controller = LoginController();
+
+  RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class RegisterView extends StatelessWidget {
           backgroundColor: baseColor,
           body: Container(
             padding: const EdgeInsets.only(top: 40),
-            width: Get.width,
+            // width: Get.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -100,7 +102,7 @@ class RegisterView extends StatelessWidget {
                             fontWeight: FontWeight.normal)),
                     SelectableText(
                       onTap: () {
-                        Get.to(() => const EulaView());
+                        // Get.to(() => const EulaView());
                       },
                       "EULA",
                       style: GoogleFonts.montserrat(
