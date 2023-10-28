@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/utils/styles.dart';
+import 'package:crypto_wallet/core/utils/styles.dart';
 
 // Package imports:
 
@@ -18,8 +18,9 @@ class DefaultCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context).size;
     return SizedBox(
-      // width: Get.width / 1.25,
+      width: media.width,
       height: 160,
       child: Card(
         color: primary ?? baseColor2,

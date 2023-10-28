@@ -4,8 +4,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/models/autenticacao_model.dart';
-import 'package:crypto_wallet/global/services/authentication/repository/autenticacao_repository.dart';
+import 'package:crypto_wallet/core/data/models/autenticacao_model.dart';
+import 'package:crypto_wallet/core/services/authentication/repository/autenticacao_repository.dart';
 
 // Package imports:
 

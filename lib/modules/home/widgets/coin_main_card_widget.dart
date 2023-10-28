@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/common/components/default_button_component.dart';
-import 'package:crypto_wallet/global/common/components/default_title_component.dart';
-import 'package:crypto_wallet/global/utils/styles.dart';
+import 'package:crypto_wallet/core/utils/styles.dart';
+import 'package:crypto_wallet/core/widgets/default_button_component.dart';
+import 'package:crypto_wallet/core/widgets/default_title_component.dart';
 import 'package:crypto_wallet/modules/home/widgets/coin_card_widget.dart';
 import 'package:crypto_wallet/modules/root/controllers/root_controller.dart';
 

@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/common/components/default_expanded_component.dart';
-import 'package:crypto_wallet/global/common/components/default_title_component.dart';
-import 'package:crypto_wallet/global/utils/image_routes.dart';
-import 'package:crypto_wallet/global/utils/styles.dart';
-import 'package:crypto_wallet/global/widgets/default_switch.dart';
+import 'package:crypto_wallet/core/utils/image_routes.dart';
+import 'package:crypto_wallet/core/utils/styles.dart';
+import 'package:crypto_wallet/core/widgets/default_expanded_component.dart';
+import 'package:crypto_wallet/core/widgets/default_switch.dart';
+import 'package:crypto_wallet/core/widgets/default_title_component.dart';
 import 'package:crypto_wallet/modules/profile/controllers/profile_controller.dart';
 
 // Package imports:

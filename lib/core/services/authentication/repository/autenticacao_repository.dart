@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/models/autenticacao_model.dart';
-import 'package:crypto_wallet/global/services/dio/custom_dio.dart';
-import 'package:crypto_wallet/global/services/dio/custom_options.dart';
+import 'package:crypto_wallet/core/data/models/autenticacao_model.dart';
+import 'package:crypto_wallet/core/services/dio/custom_dio.dart';
+import 'package:crypto_wallet/core/services/dio/custom_options.dart';
 
 class AutenticacaoRepository {
   var options = CustomOptions.getOptions();

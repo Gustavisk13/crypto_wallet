@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/utils/styles.dart';
+import 'package:crypto_wallet/core/utils/styles.dart';
 import 'package:crypto_wallet/modules/root/widgets/root_navigation_bar_item.dart';
 
 class RootPage extends StatefulWidget {
@@ -35,7 +35,7 @@ class _RootPageState extends State<RootPage> {
 
   final tabs = const [
     RootNavigationBarItem(
-      label: 'Home',
+      label: 'Início',
       icon: Icon(Icons.dashboard),
       activeIcon: Icon(
         Icons.dashboard,
@@ -43,7 +43,7 @@ class _RootPageState extends State<RootPage> {
       initialLocation: '/home',
     ),
     RootNavigationBarItem(
-      label: 'Exchange',
+      label: 'Câmbio',
       icon: Icon(Icons.currency_bitcoin),
       activeIcon: Icon(
         Icons.currency_bitcoin,
@@ -51,7 +51,15 @@ class _RootPageState extends State<RootPage> {
       initialLocation: '/exchange',
     ),
     RootNavigationBarItem(
-      label: 'Coins',
+      label: 'Carteiras',
+      icon: Icon(Icons.wallet_outlined),
+      activeIcon: Icon(
+        Icons.wallet_outlined,
+      ),
+      initialLocation: '/add',
+    ),
+    RootNavigationBarItem(
+      label: 'Moedas',
       icon: Icon(Icons.monetization_on),
       activeIcon: Icon(
         Icons.monetization_on,
@@ -59,7 +67,7 @@ class _RootPageState extends State<RootPage> {
       initialLocation: '/list-coins',
     ),
     RootNavigationBarItem(
-      label: 'Profile',
+      label: 'Perfil',
       icon: Icon(Icons.people),
       activeIcon: Icon(Icons.people),
       initialLocation: '/profile',

@@ -2,7 +2,7 @@
 import 'package:dio/dio.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/utils/status_code.dart';
+import 'package:crypto_wallet/core/utils/status_code.dart';
 
 class CustomInterceptors extends InterceptorsWrapper {
   @override

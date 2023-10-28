@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/common/components/default_title_component.dart';
-import 'package:crypto_wallet/global/utils/styles.dart';
+import 'package:crypto_wallet/core/utils/styles.dart';
+import 'package:crypto_wallet/core/widgets/default_title_component.dart';
 
 class ListCoinsPage extends StatelessWidget {
   const ListCoinsPage({super.key});

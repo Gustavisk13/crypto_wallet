@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/routes/app_routes.dart';
+import 'package:crypto_wallet/core/routes/app_routes.dart';
+import 'package:crypto_wallet/modules/add/add_view.dart';
 import 'package:crypto_wallet/modules/eula/eula_view.dart';
 import 'package:crypto_wallet/modules/exchange/exchange_view.dart';
 import 'package:crypto_wallet/modules/home/home_view.dart';
@@ -56,27 +57,39 @@ class AppRouter {
         },
         routes: [
           GoRoute(
-              name: AppRoutes.home,
-              path: AppRoutes.homePath,
-              pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: HomePage())),
+            name: AppRoutes.home,
+            path: AppRoutes.homePath,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: HomePage(),
+            ),
+          ),
           GoRoute(
             name: AppRoutes.exchange,
             path: AppRoutes.exchangePath,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: ExchangePage()),
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: ExchangePage(),
+            ),
+          ),
+          GoRoute(
+            name: AppRoutes.add,
+            path: AppRoutes.addPath,
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: AddPage(),
+            ),
           ),
           GoRoute(
             name: AppRoutes.listCoins,
             path: AppRoutes.listCoinsPath,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: ListCoinsPage()),
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: ListCoinsPage(),
+            ),
           ),
           GoRoute(
             name: AppRoutes.profile,
             path: AppRoutes.profilePath,
-            pageBuilder: (context, state) =>
-                const NoTransitionPage(child: ProfilePage()),
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: ProfilePage(),
+            ),
           ),
         ],
       ),

@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/common/components/default_dialog.dart';
+import 'package:crypto_wallet/core/widgets/default_dialog.dart';
 
 // Package imports:
 

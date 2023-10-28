@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/routes/app_router.dart';
-import 'package:crypto_wallet/global/themes/normal_theme.dart';
+import 'package:crypto_wallet/core/routes/app_router.dart';
+import 'package:crypto_wallet/core/themes/normal_theme.dart';
+import 'package:crypto_wallet/injection_container.dart';
 
 // Package imports:
 
@@ -20,7 +21,7 @@ class CryptoWalletApp extends StatefulWidget {
 }
 
 class CryptoWalletAppState extends State<CryptoWalletApp> {
-  final GoRouter router = AppRouter().router;
+  final GoRouter router = getIt<AppRouter>().router;
 
   @override
   Widget build(BuildContext context) {

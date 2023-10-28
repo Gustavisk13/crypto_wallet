@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/common/components/default_title_component.dart';
-import 'package:crypto_wallet/global/utils/image_routes.dart';
-import 'package:crypto_wallet/global/utils/styles.dart';
+import 'package:crypto_wallet/core/utils/image_routes.dart';
+import 'package:crypto_wallet/core/utils/styles.dart';
+import 'package:crypto_wallet/core/widgets/default_title_component.dart';
 import 'package:crypto_wallet/modules/home/controllers/coin_carousel_controller.dart';
 
 // Package imports:

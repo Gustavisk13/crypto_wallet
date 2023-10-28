@@ -10,6 +10,7 @@
             "type": "dart",
             "args": [
                 "--dart-define=debugOptions=true",
+                "--dart-define=API_URL=https://crypto-wallet-api-cjir.onrender.com"
             ]
             
         },

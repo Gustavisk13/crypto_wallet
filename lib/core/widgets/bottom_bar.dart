@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 // Project imports:
-import 'package:crypto_wallet/global/utils/styles.dart';
+import 'package:crypto_wallet/core/utils/styles.dart';
 
 class BottomBar extends StatelessWidget {
   final int? initialActiveIndex;
