@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:crypto_wallet/core/widgets/default_title_component.dart';
-import '../../core/utils/styles.dart';
+import '../../../../core/utils/styles.dart';
 
 class ExchangePage extends StatelessWidget {
   const ExchangePage({super.key});

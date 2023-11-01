@@ -10,8 +10,8 @@ import 'package:go_router/go_router.dart';
 // Project imports:
 import 'package:crypto_wallet/core/routes/app_routes.dart';
 import 'package:crypto_wallet/modules/add/add_view.dart';
+import 'package:crypto_wallet/modules/coin/presentation/pages/exchange_page.dart';
 import 'package:crypto_wallet/modules/eula/eula_view.dart';
-import 'package:crypto_wallet/modules/exchange/exchange_view.dart';
 import 'package:crypto_wallet/modules/home/home_view.dart';
 import 'package:crypto_wallet/modules/list/listcoins_view.dart';
 import 'package:crypto_wallet/modules/login/login_view.dart';
