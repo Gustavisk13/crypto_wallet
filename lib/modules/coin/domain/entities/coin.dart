@@ -5,10 +5,11 @@ class Coin extends Equatable {
   final int id;
   final String assetId;
   final String name;
-  final DateTime dateStart;
-  final DateTime dateEnd;
-  final double price;
-  final String iconId;
+  final DateTime dataStart;
+  final DateTime dataEnd;
+  final double? price;
+  final String? iconId;
+  final String symbolId;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -16,10 +17,11 @@ class Coin extends Equatable {
     required this.id,
     required this.assetId,
     required this.name,
-    required this.dateStart,
-    required this.dateEnd,
-    required this.price,
-    required this.iconId,
+    required this.dataStart,
+    required this.dataEnd,
+    this.price,
+    this.iconId,
+    required this.symbolId,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -29,10 +31,11 @@ class Coin extends Equatable {
         id,
         assetId,
         name,
-        dateStart,
-        dateEnd,
+        dataStart,
+        dataEnd,
         price,
         iconId,
+        symbolId,
         createdAt,
         updatedAt,
       ];
