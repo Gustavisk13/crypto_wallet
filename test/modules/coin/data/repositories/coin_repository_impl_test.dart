@@ -128,13 +128,21 @@ void main() {
         () async {
           when(() => mockRemoteDataSource.getCoin(
                   coinAssetId: any(named: 'coinAssetId')))
-              .thenThrow(ServerException());
+              .thenThrow(ServerException(
+            message: 'Something went wrong',
+            statusCode: 500,
+          ));
 
           final result = await repository.getCoin(coinAssetId: tCoinAssetId);
 
           verify(() => mockRemoteDataSource.getCoin(coinAssetId: tCoinAssetId));
           verifyZeroInteractions(mockLocalDataSource);
-          expect(result, equals(Left(ServerFailure())));
+          expect(
+              result,
+              equals(Left(ServerFailure(
+                message: 'Something went wrong',
+                statusCode: 500,
+              ))));
 
           clearInteractions(mockRemoteDataSource);
         },
@@ -278,14 +286,21 @@ void main() {
       test(
         'should return server failure when the call to remote data source is unsuccessful',
         () async {
-          when(() => mockRemoteDataSource.getCoins())
-              .thenThrow(ServerException());
+          when(() => mockRemoteDataSource.getCoins()).thenThrow(ServerException(
+            message: 'Something went wrong',
+            statusCode: 500,
+          ));
 
           final result = await repository.getCoins();
 
           verify(() => mockRemoteDataSource.getCoins());
           verifyZeroInteractions(mockLocalDataSource);
-          expect(result, equals(Left(ServerFailure())));
+          expect(
+              result,
+              equals(Left(ServerFailure(
+                message: 'Something went wrong',
+                statusCode: 500,
+              ))));
 
           clearInteractions(mockRemoteDataSource);
         },
@@ -436,8 +451,10 @@ void main() {
         'should return server failure when the call to remote data source is unsuccessful',
         () async {
           when(() => mockRemoteDataSource.getCoinsPaginated(
-                  pageNumber: any(named: 'pageNumber')))
-              .thenThrow(ServerException());
+              pageNumber: any(named: 'pageNumber'))).thenThrow(ServerException(
+            message: 'Something went wrong',
+            statusCode: 500,
+          ));
 
           final result =
               await repository.getCoinsPaginated(pageNumber: tPageNumber);
@@ -445,7 +462,12 @@ void main() {
           verify(() =>
               mockRemoteDataSource.getCoinsPaginated(pageNumber: tPageNumber));
           verifyZeroInteractions(mockLocalDataSource);
-          expect(result, equals(Left(ServerFailure())));
+          expect(
+              result,
+              equals(Left(ServerFailure(
+                message: 'Something went wrong',
+                statusCode: 500,
+              ))));
 
           clearInteractions(mockRemoteDataSource);
         },

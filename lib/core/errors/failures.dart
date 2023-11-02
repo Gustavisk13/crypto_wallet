@@ -14,6 +14,14 @@ abstract class Failure extends Equatable {
 
 // General failures
 
-class ServerFailure extends Failure {}
+class ServerFailure extends Failure {
+  final String message;
+  final int statusCode;
+
+  ServerFailure({
+    required this.message,
+    required this.statusCode,
+  }) : super([message, statusCode]);
+}
 
 class CacheFailure extends Failure {}

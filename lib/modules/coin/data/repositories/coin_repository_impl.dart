@@ -76,7 +76,10 @@ class CoinRepositoryImpl implements CoinRepository {
 
         return Right(remoteData);
       } on ServerException catch (_) {
-        return Left(ServerFailure());
+        return Left(ServerFailure(
+          message: _.message,
+          statusCode: _.statusCode,
+        ));
       }
     } else {
       try {

@@ -1,3 +1,5 @@
+// Dart imports:
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 
@@ -164,7 +166,7 @@ class HomePage extends StatelessWidget {
                                 ),
                                 DefaultButtonComponent(
                                   toggleBorders: true,
-                                  onPressed: () {
+                                  onPressed: () async {
                                     // Get.to(() => const DefaultWebView(
                                     //       title: 'Begginer Guide',
                                     //       url: 'https://learncrypto.com/knowledge-base/basics',

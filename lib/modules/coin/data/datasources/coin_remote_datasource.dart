@@ -63,7 +63,10 @@ class CoinRemoteDataSourceImpl implements CoinRemoteDataSource {
     );
 
     if (response.statusCode != 200) {
-      throw ServerException();
+      throw ServerException(
+        message: response.body,
+        statusCode: response.statusCode,
+      );
     }
 
     if (T == List<CoinModel>) {
