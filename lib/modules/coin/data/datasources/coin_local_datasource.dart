@@ -13,7 +13,7 @@ abstract class CoinLocalDataSource {
   /// the user had an internet connection.
   ///
   /// Throws a [CacheException] if no cached data is present.
-  Future<CoinModel> getCoin({required int coinId});
+  Future<CoinModel> getCoin({required String coinAssetId});
 
   /// Gets the cached list of [CoinModel] which was gotten the last time
   /// the user had an internet connection.
@@ -39,8 +39,8 @@ class CoinLocalDataSourceImpl implements CoinLocalDataSource {
   CoinLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
-  Future<CoinModel> getCoin({required int coinId}) {
-    final jsonString = sharedPreferences.getString('CACHED_COIN_$coinId');
+  Future<CoinModel> getCoin({required String coinAssetId}) {
+    final jsonString = sharedPreferences.getString('CACHED_COIN_$coinAssetId');
 
     if (jsonString != null) {
       return Future.value(CoinModel.fromJson(json: jsonDecode(jsonString)));

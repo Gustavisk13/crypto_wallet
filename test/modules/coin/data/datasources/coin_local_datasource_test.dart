@@ -25,7 +25,7 @@ void main() {
   });
 
   group('getCoin', () {
-    const int tCoinId = 1;
+    const String tCoinAssetId = 'BTC';
 
     final tCoinModel =
         CoinModel.fromJson(json: jsonDecode(fixture('coin.json')));
@@ -37,10 +37,11 @@ void main() {
       when(() => mockSharedPreferences.getString(any()))
           .thenReturn(fixture('coin.json'));
       // act
-      final result = await dataSource.getCoin(coinId: tCoinId);
+      final result = await dataSource.getCoin(coinAssetId: tCoinAssetId);
 
       // assert
-      verify(() => mockSharedPreferences.getString('CACHED_COIN_$tCoinId'));
+      verify(
+          () => mockSharedPreferences.getString('CACHED_COIN_$tCoinAssetId'));
       expect(result, equals(tCoinModel));
     });
 
@@ -53,7 +54,7 @@ void main() {
       final call = dataSource.getCoin;
 
       // assert
-      expect(() => call(coinId: tCoinId),
+      expect(() => call(coinAssetId: tCoinAssetId),
           throwsA(const TypeMatcher<CacheException>()));
     });
   });

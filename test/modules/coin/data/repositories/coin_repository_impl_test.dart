@@ -52,7 +52,8 @@ void main() {
   });
 
   group('getCoin', () {
-    const int tCoinId = 1;
+    const String tCoinAssetId = 'BTC';
+
     final CoinModel tCoinModel = CoinModel(
       id: 58,
       name: 'Bitcoin',
@@ -72,14 +73,15 @@ void main() {
       () async {
         when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
 
-        when(() => mockRemoteDataSource.getCoin(coinId: any(named: 'coinId')))
+        when(() => mockRemoteDataSource.getCoin(
+                coinAssetId: any(named: 'coinAssetId')))
             .thenAnswer((_) async => tCoinModel);
 
         when(() => mockLocalDataSource.cacheCoin(
                 coinToCache: any(named: 'coinToCache')))
             .thenAnswer((_) async => {});
 
-        await repository.getCoin(coinId: tCoinId);
+        await repository.getCoin(coinAssetId: tCoinAssetId);
 
         verify(() => mockNetworkInfo.isConnected);
       },
@@ -93,12 +95,13 @@ void main() {
       test(
         'should return remote data when the call to remote data source is successful',
         () async {
-          when(() => mockRemoteDataSource.getCoin(coinId: any(named: 'coinId')))
+          when(() => mockRemoteDataSource.getCoin(
+                  coinAssetId: any(named: 'coinAssetId')))
               .thenAnswer((_) async => tCoinModel);
 
-          final result = await repository.getCoin(coinId: tCoinId);
+          final result = await repository.getCoin(coinAssetId: tCoinAssetId);
 
-          verify(() => mockRemoteDataSource.getCoin(coinId: tCoinId));
+          verify(() => mockRemoteDataSource.getCoin(coinAssetId: tCoinAssetId));
           expect(result, equals(Right(tCoin)));
         },
       );
@@ -106,12 +109,13 @@ void main() {
       test(
         'should cache the data locally when the call to remote data source is successful',
         () async {
-          when(() => mockRemoteDataSource.getCoin(coinId: any(named: 'coinId')))
+          when(() => mockRemoteDataSource.getCoin(
+                  coinAssetId: any(named: 'coinAssetId')))
               .thenAnswer((_) async => tCoinModel);
 
-          await repository.getCoin(coinId: tCoinId);
+          await repository.getCoin(coinAssetId: tCoinAssetId);
 
-          verify(() => mockRemoteDataSource.getCoin(coinId: tCoinId));
+          verify(() => mockRemoteDataSource.getCoin(coinAssetId: tCoinAssetId));
           verify(() => mockLocalDataSource.cacheCoin(coinToCache: tCoinModel));
 
           clearInteractions(mockRemoteDataSource);
@@ -122,12 +126,13 @@ void main() {
       test(
         'should return server failure when the call to remote data source is unsuccessful',
         () async {
-          when(() => mockRemoteDataSource.getCoin(coinId: any(named: 'coinId')))
+          when(() => mockRemoteDataSource.getCoin(
+                  coinAssetId: any(named: 'coinAssetId')))
               .thenThrow(ServerException());
 
-          final result = await repository.getCoin(coinId: tCoinId);
+          final result = await repository.getCoin(coinAssetId: tCoinAssetId);
 
-          verify(() => mockRemoteDataSource.getCoin(coinId: tCoinId));
+          verify(() => mockRemoteDataSource.getCoin(coinAssetId: tCoinAssetId));
           verifyZeroInteractions(mockLocalDataSource);
           expect(result, equals(Left(ServerFailure())));
 
@@ -144,13 +149,14 @@ void main() {
       test(
         'should return last locally cached data when the cached data is present',
         () async {
-          when(() => mockLocalDataSource.getCoin(coinId: any(named: 'coinId')))
+          when(() => mockLocalDataSource.getCoin(
+                  coinAssetId: any(named: 'coinAssetId')))
               .thenAnswer((_) async => tCoinModel);
 
-          final result = await repository.getCoin(coinId: tCoinId);
+          final result = await repository.getCoin(coinAssetId: tCoinAssetId);
 
           verifyZeroInteractions(mockRemoteDataSource);
-          verify(() => mockLocalDataSource.getCoin(coinId: tCoinId));
+          verify(() => mockLocalDataSource.getCoin(coinAssetId: tCoinAssetId));
           expect(result, equals(Right(tCoin)));
 
           clearInteractions(mockLocalDataSource);
@@ -160,13 +166,14 @@ void main() {
       test(
         'should return CacheFailure when there is no cached data present',
         () async {
-          when(() => mockLocalDataSource.getCoin(coinId: any(named: 'coinId')))
+          when(() => mockLocalDataSource.getCoin(
+                  coinAssetId: any(named: 'coinAssetId')))
               .thenThrow(CacheException());
 
-          final result = await repository.getCoin(coinId: tCoinId);
+          final result = await repository.getCoin(coinAssetId: tCoinAssetId);
 
           verifyZeroInteractions(mockRemoteDataSource);
-          verify(() => mockLocalDataSource.getCoin(coinId: tCoinId));
+          verify(() => mockLocalDataSource.getCoin(coinAssetId: tCoinAssetId));
           expect(result, equals(Left(CacheFailure())));
         },
       );

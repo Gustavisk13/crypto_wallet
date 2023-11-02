@@ -19,7 +19,8 @@ void main() {
     usecase = GetCoin(repository: mockCoinRepository);
   });
 
-  const int tCoinId = 82;
+  const String tCoinAssetId = 'BTC';
+
   final Coin tCoin = Coin(
     id: 82,
     name: 'Bitcoin',
@@ -34,15 +35,16 @@ void main() {
   );
 
   test('should get coin from repository', () async {
-    when(() => mockCoinRepository.getCoin(coinId: any(named: 'coinId')))
+    when(() =>
+            mockCoinRepository.getCoin(coinAssetId: any(named: 'coinAssetId')))
         .thenAnswer((_) async => Right(tCoin));
 
-    final result = await usecase(const Params(coinId: tCoinId));
+    final result = await usecase(const Params(coinAssetId: tCoinAssetId));
 
     expect(result, Right(tCoin));
 
     verify(
-      () => mockCoinRepository.getCoin(coinId: tCoinId),
+      () => mockCoinRepository.getCoin(coinAssetId: tCoinAssetId),
     );
 
     verifyNoMoreInteractions(mockCoinRepository);

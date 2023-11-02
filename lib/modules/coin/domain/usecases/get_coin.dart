@@ -15,15 +15,15 @@ class GetCoin implements UseCase<Coin, Params> {
 
   @override
   Future<Either<Failure, Coin>> call(Params params) async {
-    return await repository.getCoin(coinId: params.coinId);
+    return await repository.getCoin(coinAssetId: params.coinAssetId);
   }
 }
 
 class Params extends Equatable {
-  final int coinId;
+  final String coinAssetId;
 
-  const Params({required this.coinId});
+  const Params({required this.coinAssetId});
 
   @override
-  List<Object?> get props => [coinId];
+  List<Object?> get props => [coinAssetId];
 }

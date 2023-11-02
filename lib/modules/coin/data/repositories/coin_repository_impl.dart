@@ -23,10 +23,10 @@ class CoinRepositoryImpl implements CoinRepository {
   });
 
   @override
-  Future<Either<Failure, Coin>> getCoin({required int coinId}) async {
+  Future<Either<Failure, Coin>> getCoin({required String coinAssetId}) async {
     return await _fetchData<CoinModel>(
-      remoteFetch: () => remoteDataSource.getCoin(coinId: coinId),
-      localFetch: () => localDataSource.getCoin(coinId: coinId),
+      remoteFetch: () => remoteDataSource.getCoin(coinAssetId: coinAssetId),
+      localFetch: () => localDataSource.getCoin(coinAssetId: coinAssetId),
       cacheData: (coin) => localDataSource.cacheCoin(
         coinToCache: coin,
       ),
