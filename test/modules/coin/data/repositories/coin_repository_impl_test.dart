@@ -376,8 +376,8 @@ void main() {
             .thenAnswer((_) async => tCoinModelList);
 
         when(() => mockLocalDataSource.cacheCoins(
-                coinsToCache: any(named: 'coinsToCache')))
-            .thenAnswer((_) async => {});
+            coinsToCache: any(named: 'coinsToCache'),
+            pageNumber: any(named: 'pageNumber'))).thenAnswer((_) async => {});
 
         await repository.getCoinsPaginated(pageNumber: tPageNumber);
 
@@ -417,8 +417,8 @@ void main() {
 
           verify(() =>
               mockRemoteDataSource.getCoinsPaginated(pageNumber: tPageNumber));
-          verify(() =>
-              mockLocalDataSource.cacheCoins(coinsToCache: tCoinModelList));
+          verify(() => mockLocalDataSource.cacheCoins(
+              coinsToCache: tCoinModelList, pageNumber: tPageNumber));
 
           clearInteractions(mockRemoteDataSource);
           clearInteractions(mockLocalDataSource);
@@ -441,6 +441,46 @@ void main() {
           expect(result, equals(Left(ServerFailure())));
 
           clearInteractions(mockRemoteDataSource);
+        },
+      );
+    });
+
+    group('device is offline', () {
+      setUp(() {
+        when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+      });
+
+      test(
+        'should return list of locally cached data when the cached data is present',
+        () async {
+          when(() => mockLocalDataSource.getCoins(
+                  pageNumber: any(named: 'pageNumber')))
+              .thenAnswer((_) async => tCoinModelList);
+
+          final result =
+              await repository.getCoinsPaginated(pageNumber: tPageNumber);
+
+          verifyZeroInteractions(mockRemoteDataSource);
+          verify(() => mockLocalDataSource.getCoins(pageNumber: tPageNumber));
+          expect(result, equals(Right(tCoinList)));
+
+          clearInteractions(mockLocalDataSource);
+        },
+      );
+
+      test(
+        'should return CacheFailure when there is no cached data present',
+        () async {
+          when(() => mockLocalDataSource.getCoins(
+                  pageNumber: any(named: 'pageNumber')))
+              .thenThrow(CacheException());
+
+          final result =
+              await repository.getCoinsPaginated(pageNumber: tPageNumber);
+
+          verifyZeroInteractions(mockRemoteDataSource);
+          verify(() => mockLocalDataSource.getCoins(pageNumber: tPageNumber));
+          expect(result, equals(Left(CacheFailure())));
         },
       );
     });

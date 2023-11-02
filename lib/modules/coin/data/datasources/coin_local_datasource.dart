@@ -12,7 +12,7 @@ abstract class CoinLocalDataSource {
   /// the user had an internet connection.
   ///
   /// Throws a [CacheException] for all error codes.
-  Future<List<CoinModel>> getCoins();
+  Future<List<CoinModel>> getCoins({int? pageNumber});
 
   /// Cache the [CoinModel] to be used later.
   ///
@@ -22,5 +22,6 @@ abstract class CoinLocalDataSource {
   /// Cache the list of [CoinModel] to be used later.
   ///
   /// Throws a [CacheException] if the data cannot be cached.
-  Future<void> cacheCoins({required List<CoinModel> coinsToCache});
+  Future<void> cacheCoins(
+      {required List<CoinModel> coinsToCache, int? pageNumber});
 }
