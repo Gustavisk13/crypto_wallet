@@ -9,8 +9,10 @@
             "request": "launch",
             "type": "dart",
             "args": [
-                "--dart-define=debugOptions=true",
-                "--dart-define=API_URL=https://crypto-wallet-api-cjir.onrender.com"
+                "--dart-define",
+                "debugOptions=true",
+                "--dart-define",
+                "API_URL=https://crypto-wallet-api-cjir.onrender.com",
             ]
             
         },
@@ -19,7 +21,10 @@
             "request": "launch",
             "type": "dart",
             "args": [
-                "--dart-define=debugOptions=false",
+                "--dart-define",
+                "debugOptions=true",
+                "--dart-define",
+                "API_URL=https://crypto-wallet-api-cjir.onrender.com",
             ]
             
         },
