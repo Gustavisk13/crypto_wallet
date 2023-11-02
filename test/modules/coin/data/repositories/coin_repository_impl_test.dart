@@ -6,7 +6,7 @@ import 'package:mocktail/mocktail.dart';
 // Project imports:
 import 'package:crypto_wallet/core/errors/exceptions.dart';
 import 'package:crypto_wallet/core/errors/failures.dart';
-import 'package:crypto_wallet/core/platform/network_info.dart';
+import 'package:crypto_wallet/core/network/network_info.dart';
 import 'package:crypto_wallet/modules/coin/data/datasources/coin_local_datasource.dart';
 import 'package:crypto_wallet/modules/coin/data/datasources/coin_remote_datasource.dart';
 import 'package:crypto_wallet/modules/coin/data/models/coin_model.dart';
