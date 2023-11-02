@@ -46,12 +46,49 @@ class CoinRepositoryImpl implements CoinRepository {
 
   @override
   Future<Either<Failure, List<Coin>>> getCoins() async {
-    return Future(() => Left(ServerFailure()));
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteCoins = await remoteDataSource.getCoins();
+
+        localDataSource.cacheCoins(coinsToCache: remoteCoins);
+
+        return Right(remoteCoins);
+      } on ServerException catch (_) {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localCoins = await localDataSource.getCoins();
+
+        return Right(localCoins);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
+    }
   }
 
   @override
   Future<Either<Failure, List<Coin>>> getCoinsPaginated(
       {int pageNumber = 1}) async {
-    return Future(() => Left(ServerFailure()));
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteCoins =
+            await remoteDataSource.getCoinsPaginated(pageNumber: pageNumber);
+
+        localDataSource.cacheCoins(coinsToCache: remoteCoins);
+
+        return Right(remoteCoins);
+      } on ServerException catch (_) {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localCoins = await localDataSource.getCoins();
+
+        return Right(localCoins);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
+    }
   }
 }

@@ -172,4 +172,277 @@ void main() {
       );
     });
   });
+
+  group('getCoins', () {
+    final List<CoinModel> tCoinModelList = [
+      CoinModel(
+        id: 58,
+        name: 'Bitcoin',
+        assetId: 'BTC',
+        dataStart: DateTime.parse('2011-09-13'),
+        dataEnd: DateTime.parse('2023-10-31'),
+        price: 34237.5,
+        iconId: "4caf2b16-a017-4e26-a348-2cea69c34cba",
+        symbolId: 'BITSTAMP_SPOT_BTC_USD',
+        createdAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+        updatedAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+      ),
+      CoinModel(
+        id: 60,
+        name: 'Ethereum',
+        assetId: 'ETH',
+        dataStart: DateTime.parse('2015-08-07'),
+        dataEnd: DateTime.parse('2023-10-31'),
+        price: 2145.5,
+        iconId: "4caf2b16-a017-4e26-a348-2cea69c34cba",
+        symbolId: 'BITSTAMP_SPOT_ETH_USD',
+        createdAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+        updatedAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+      ),
+      CoinModel(
+        id: 61,
+        name: 'Litecoin',
+        assetId: 'LTC',
+        dataStart: DateTime.parse('2013-04-28'),
+        dataEnd: DateTime.parse('2023-10-31'),
+        price: 138.5,
+        iconId: "4caf2b16-a017-4e26-a348-2cea69c34cba",
+        symbolId: 'BITSTAMP_SPOT_LTC_USD',
+        createdAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+        updatedAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+      ),
+    ];
+
+    final List<Coin> tCoinList = tCoinModelList;
+
+    test(
+      'should check if the device is online',
+      () async {
+        when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+
+        when(() => mockRemoteDataSource.getCoins())
+            .thenAnswer((_) async => tCoinModelList);
+
+        when(() => mockLocalDataSource.cacheCoins(
+                coinsToCache: any(named: 'coinsToCache')))
+            .thenAnswer((_) async => {});
+
+        await repository.getCoins();
+
+        verify(() => mockNetworkInfo.isConnected);
+      },
+    );
+
+    group('device is online', () {
+      setUp(() {
+        when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      });
+
+      test(
+        'should return remote data when the call to remote data source is successful',
+        () async {
+          when(() => mockRemoteDataSource.getCoins())
+              .thenAnswer((_) async => tCoinModelList);
+
+          final result = await repository.getCoins();
+
+          verify(() => mockRemoteDataSource.getCoins());
+          expect(result, equals(Right(tCoinList)));
+        },
+      );
+
+      test(
+        'should cache the data locally when the call to remote data source is successful',
+        () async {
+          when(() => mockRemoteDataSource.getCoins())
+              .thenAnswer((_) async => tCoinModelList);
+
+          await repository.getCoins();
+
+          verify(() => mockRemoteDataSource.getCoins());
+          verify(() =>
+              mockLocalDataSource.cacheCoins(coinsToCache: tCoinModelList));
+
+          clearInteractions(mockRemoteDataSource);
+          clearInteractions(mockLocalDataSource);
+        },
+      );
+
+      test(
+        'should return server failure when the call to remote data source is unsuccessful',
+        () async {
+          when(() => mockRemoteDataSource.getCoins())
+              .thenThrow(ServerException());
+
+          final result = await repository.getCoins();
+
+          verify(() => mockRemoteDataSource.getCoins());
+          verifyZeroInteractions(mockLocalDataSource);
+          expect(result, equals(Left(ServerFailure())));
+
+          clearInteractions(mockRemoteDataSource);
+        },
+      );
+    });
+
+    group('device is offline', () {
+      setUp(() {
+        when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+      });
+
+      test(
+        'should return list of locally cached data when the cached data is present',
+        () async {
+          when(() => mockLocalDataSource.getCoins())
+              .thenAnswer((_) async => tCoinModelList);
+
+          final result = await repository.getCoins();
+
+          verifyZeroInteractions(mockRemoteDataSource);
+          verify(() => mockLocalDataSource.getCoins());
+          expect(result, equals(Right(tCoinList)));
+
+          clearInteractions(mockLocalDataSource);
+        },
+      );
+
+      test(
+        'should return CacheFailure when there is no cached data present',
+        () async {
+          when(() => mockLocalDataSource.getCoins())
+              .thenThrow(CacheException());
+
+          final result = await repository.getCoins();
+
+          verifyZeroInteractions(mockRemoteDataSource);
+          verify(() => mockLocalDataSource.getCoins());
+          expect(result, equals(Left(CacheFailure())));
+        },
+      );
+    });
+  });
+
+  group('getCoinsPaginated', () {
+    const int tPageNumber = 2;
+
+    final List<CoinModel> tCoinModelList = [
+      CoinModel(
+        id: 58,
+        name: 'Bitcoin',
+        assetId: 'BTC',
+        dataStart: DateTime.parse('2011-09-13'),
+        dataEnd: DateTime.parse('2023-10-31'),
+        price: 34237.5,
+        iconId: "4caf2b16-a017-4e26-a348-2cea69c34cba",
+        symbolId: 'BITSTAMP_SPOT_BTC_USD',
+        createdAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+        updatedAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+      ),
+      CoinModel(
+        id: 60,
+        name: 'Ethereum',
+        assetId: 'ETH',
+        dataStart: DateTime.parse('2015-08-07'),
+        dataEnd: DateTime.parse('2023-10-31'),
+        price: 2145.5,
+        iconId: "4caf2b16-a017-4e26-a348-2cea69c34cba",
+        symbolId: 'BITSTAMP_SPOT_ETH_USD',
+        createdAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+        updatedAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+      ),
+      CoinModel(
+        id: 61,
+        name: 'Litecoin',
+        assetId: 'LTC',
+        dataStart: DateTime.parse('2013-04-28'),
+        dataEnd: DateTime.parse('2023-10-31'),
+        price: 138.5,
+        iconId: "4caf2b16-a017-4e26-a348-2cea69c34cba",
+        symbolId: 'BITSTAMP_SPOT_LTC_USD',
+        createdAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+        updatedAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
+      ),
+    ];
+
+    final List<Coin> tCoinList = tCoinModelList;
+
+    test(
+      'should check if the device is online',
+      () async {
+        when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+
+        when(() => mockRemoteDataSource.getCoinsPaginated(
+                pageNumber: any(named: 'pageNumber')))
+            .thenAnswer((_) async => tCoinModelList);
+
+        when(() => mockLocalDataSource.cacheCoins(
+                coinsToCache: any(named: 'coinsToCache')))
+            .thenAnswer((_) async => {});
+
+        await repository.getCoinsPaginated(pageNumber: tPageNumber);
+
+        verify(() => mockNetworkInfo.isConnected);
+      },
+    );
+
+    group('device is online', () {
+      setUp(() {
+        when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      });
+
+      test(
+        'should return remote data when the call to remote data source is successful',
+        () async {
+          when(() => mockRemoteDataSource.getCoinsPaginated(
+                  pageNumber: any(named: 'pageNumber')))
+              .thenAnswer((_) async => tCoinModelList);
+
+          final result =
+              await repository.getCoinsPaginated(pageNumber: tPageNumber);
+
+          verify(() =>
+              mockRemoteDataSource.getCoinsPaginated(pageNumber: tPageNumber));
+          expect(result, equals(Right(tCoinList)));
+        },
+      );
+
+      test(
+        'should cache the data locally when the call to remote data source is successful',
+        () async {
+          when(() => mockRemoteDataSource.getCoinsPaginated(
+                  pageNumber: any(named: 'pageNumber')))
+              .thenAnswer((_) async => tCoinModelList);
+
+          await repository.getCoinsPaginated(pageNumber: tPageNumber);
+
+          verify(() =>
+              mockRemoteDataSource.getCoinsPaginated(pageNumber: tPageNumber));
+          verify(() =>
+              mockLocalDataSource.cacheCoins(coinsToCache: tCoinModelList));
+
+          clearInteractions(mockRemoteDataSource);
+          clearInteractions(mockLocalDataSource);
+        },
+      );
+
+      test(
+        'should return server failure when the call to remote data source is unsuccessful',
+        () async {
+          when(() => mockRemoteDataSource.getCoinsPaginated(
+                  pageNumber: any(named: 'pageNumber')))
+              .thenThrow(ServerException());
+
+          final result =
+              await repository.getCoinsPaginated(pageNumber: tPageNumber);
+
+          verify(() =>
+              mockRemoteDataSource.getCoinsPaginated(pageNumber: tPageNumber));
+          verifyZeroInteractions(mockLocalDataSource);
+          expect(result, equals(Left(ServerFailure())));
+
+          clearInteractions(mockRemoteDataSource);
+        },
+      );
+    });
+  });
 }
