@@ -36,7 +36,7 @@ void main() {
     when(() => mockCoinRepository.getCoin(coinId: any(named: 'coinId')))
         .thenAnswer((_) async => Right(tCoin));
 
-    final result = await usecase.call(coinId: tCoinId);
+    final result = await usecase(const Params(coinId: tCoinId));
 
     expect(result, Right(tCoin));
 
