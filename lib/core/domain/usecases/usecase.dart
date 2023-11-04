@@ -13,3 +13,22 @@ class NoParams extends Equatable {
   @override
   List<Object?> get props => [];
 }
+
+class AuthParams extends Equatable {
+  final String username;
+  final String password;
+  final String? name;
+
+  const AuthParams({
+    required this.username,
+    required this.password,
+    this.name,
+  });
+
+  @override
+  List<Object?> get props => [
+        username,
+        password,
+        name,
+      ];
+}

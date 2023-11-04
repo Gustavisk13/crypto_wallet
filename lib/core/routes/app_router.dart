@@ -14,7 +14,7 @@ import 'package:crypto_wallet/modules/coin/presentation/pages/exchange_page.dart
 import 'package:crypto_wallet/modules/eula/eula_view.dart';
 import 'package:crypto_wallet/modules/home/home_view.dart';
 import 'package:crypto_wallet/modules/list/listcoins_view.dart';
-import 'package:crypto_wallet/modules/login/login_view.dart';
+import 'package:crypto_wallet/modules/login/presentation/pages/login_view.dart';
 import 'package:crypto_wallet/modules/profile/profile_view.dart';
 import 'package:crypto_wallet/modules/register/register_view.dart';
 import 'package:crypto_wallet/modules/root/root.dart';

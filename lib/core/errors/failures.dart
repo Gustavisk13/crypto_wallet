@@ -25,3 +25,11 @@ class ServerFailure extends Failure {
 }
 
 class CacheFailure extends Failure {}
+
+class InvalidNameFailure extends Failure {
+  final String message;
+
+  InvalidNameFailure({
+    required this.message,
+  }) : super([message]);
+}

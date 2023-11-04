@@ -11,7 +11,7 @@ import 'package:crypto_wallet/core/utils/styles.dart';
 import 'package:crypto_wallet/core/widgets/default_button_component.dart';
 import 'package:crypto_wallet/core/widgets/default_input_component.dart';
 import 'package:crypto_wallet/core/widgets/loading_component.dart';
-import 'package:crypto_wallet/modules/login/controllers/login_controller.dart';
+import 'package:crypto_wallet/modules/login/presentation/bloc/login_controller.dart';
 
 // Package imports:
 

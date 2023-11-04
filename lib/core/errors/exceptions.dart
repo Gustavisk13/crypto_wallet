@@ -9,3 +9,11 @@ class ServerException implements Exception {
 }
 
 class CacheException implements Exception {}
+
+class InvalidUsernameException implements Exception {
+  final String message;
+
+  InvalidUsernameException({
+    required this.message,
+  });
+}
