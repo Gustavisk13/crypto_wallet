@@ -28,6 +28,7 @@ void main() {
     id: 1,
     name: 'Usuário teste',
     username: 'teste@email.com',
+    token: 'token',
     wallets: [
       UserWallet(
         id: 1,

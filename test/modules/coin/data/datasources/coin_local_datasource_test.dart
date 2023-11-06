@@ -28,14 +28,14 @@ void main() {
     const String tCoinAssetId = 'BTC';
 
     final tCoinModel =
-        CoinModel.fromJson(json: jsonDecode(fixture('coin.json')));
+        CoinModel.fromJson(json: jsonDecode(fixture('coin/coin.json')));
 
     test(
         'should return coin from SharedPreferences when there is one in the cache',
         () async {
       // arrange
       when(() => mockSharedPreferences.getString(any()))
-          .thenReturn(fixture('coin.json'));
+          .thenReturn(fixture('coin/coin.json'));
       // act
       final result = await dataSource.getCoin(coinAssetId: tCoinAssetId);
 
@@ -101,7 +101,7 @@ void main() {
 
   group('getCoins', () {
     const int tPageNumber = 1;
-    final coins = jsonDecode(fixture('coins.json')) as List;
+    final coins = jsonDecode(fixture('coin/coins.json')) as List;
 
     final tCoinsModel = coins
         .map((coin) => CoinModel.fromJson(json: coin as Map<String, dynamic>))
@@ -112,7 +112,7 @@ void main() {
         () async {
       // arrange
       when(() => mockSharedPreferences.getString(any()))
-          .thenReturn(fixture('coins.json'));
+          .thenReturn(fixture('coin/coins.json'));
       // act
       final result = await dataSource.getCoins(pageNumber: tPageNumber);
 
@@ -139,7 +139,7 @@ void main() {
   group('cacheCoins', () {
     const int tPageNumber = 1;
 
-    final coins = jsonDecode(fixture('coins.json')) as List;
+    final coins = jsonDecode(fixture('coin/coins.json')) as List;
 
     final tCoinsModel = coins
         .map((coin) => CoinModel.fromJson(json: coin as Map<String, dynamic>))

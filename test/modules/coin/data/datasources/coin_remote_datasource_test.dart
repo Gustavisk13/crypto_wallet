@@ -40,7 +40,7 @@ void main() {
   void setUpMockHttpClientSuccess200() {
     when(() => mockHttpClient.get(Uri.parse('${env.apiBaseUrl}/coins/BTC'),
             headers: any(named: 'headers')))
-        .thenAnswer((_) async => http.Response(fixture('coin.json'), 200));
+        .thenAnswer((_) async => http.Response(fixture('coin/coin.json'), 200));
   }
 
   void setUpMockHttpClientFailure404() {
@@ -58,7 +58,7 @@ void main() {
   group('getCoin', () {
     const String tCoinAssetId = 'BTC';
 
-    final String tCoinJson = fixture('coin.json');
+    final String tCoinJson = fixture('coin/coin.json');
 
     final CoinModel tCoinModel =
         CoinModel.fromJson(json: jsonDecode(tCoinJson));
@@ -104,7 +104,7 @@ void main() {
   });
 
   group('getCoins', () {
-    final String tCoinsJson = fixture('coins.json');
+    final String tCoinsJson = fixture('coin/coins.json');
 
     final List<CoinModel> tCoinsModel = (jsonDecode(tCoinsJson) as List)
         .map((e) => CoinModel.fromJson(json: e))
@@ -161,7 +161,7 @@ void main() {
     () {
       const int tPageNumber = 1;
 
-      final String tCoinsJson = fixture('coins.json');
+      final String tCoinsJson = fixture('coin/coins.json');
 
       final List<CoinModel> tCoinsModel = (jsonDecode(tCoinsJson) as List)
           .map((e) => CoinModel.fromJson(json: e))

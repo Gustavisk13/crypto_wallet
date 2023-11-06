@@ -8,6 +8,7 @@ class User extends Equatable {
   final int id;
   final String name;
   final String username;
+  final String token;
   final List<UserWallet> wallets;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -16,6 +17,7 @@ class User extends Equatable {
     required this.id,
     required this.name,
     required this.username,
+    required this.token,
     required this.wallets,
     required this.createdAt,
     required this.updatedAt,

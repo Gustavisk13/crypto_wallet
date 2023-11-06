@@ -42,7 +42,7 @@ void main() {
     test('should return a valid model when the price field is an exponent',
         () async {
       final Map<String, dynamic> jsonMap =
-          json.decode(fixture('coin_price_exp.json'));
+          json.decode(fixture('coin/coin_price_exp.json'));
 
       final result = CoinModel.fromJson(json: jsonMap);
 
@@ -51,7 +51,8 @@ void main() {
 
     test('should return a valid model when the price field is regular',
         () async {
-      final Map<String, dynamic> jsonMap = json.decode(fixture('coin.json'));
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('coin/coin.json'));
 
       final result = CoinModel.fromJson(json: jsonMap);
 
