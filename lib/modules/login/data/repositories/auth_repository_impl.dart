@@ -49,7 +49,7 @@ class AuthRepositoryImpl implements AuthRepository {
       }
     } else {
       return Left(
-        NetworkFailure(),
+        DeviceOfflineFailure(),
       );
     }
   }

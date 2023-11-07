@@ -26,7 +26,17 @@ class ServerFailure extends Failure {
 
 class CacheFailure extends Failure {}
 
-class NetworkFailure extends Failure {}
+class NetworkFailure extends Failure {
+  final String message;
+
+  NetworkFailure({
+    required this.message,
+  }) : super([message]);
+}
+
+class DeviceOfflineFailure extends NetworkFailure {
+  DeviceOfflineFailure() : super(message: 'Device is offline');
+}
 
 class InvalidNameFailure extends Failure {
   final String message;

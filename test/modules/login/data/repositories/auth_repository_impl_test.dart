@@ -4,6 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 // Project imports:
+import 'package:crypto_wallet/core/errors/exceptions.dart';
+import 'package:crypto_wallet/core/errors/failures.dart';
 import 'package:crypto_wallet/core/network/network_info.dart';
 import 'package:crypto_wallet/modules/login/data/datasources/auth_local_datasource.dart';
 import 'package:crypto_wallet/modules/login/data/datasources/auth_remote_datasource.dart';
@@ -145,6 +147,101 @@ void main() {
               username: tUserName,
               password: tPassword,
             ));
+
+        clearInteractions(mockRemoteDataSource);
+        clearInteractions(mockLocalDataSource);
+      });
+
+      test(
+          'should return server failure when the call to remote data source is unsuccessful',
+          () async {
+        when(() => mockRemoteDataSource.register(
+                  name: any(named: 'name'),
+                  username: any(named: 'username'),
+                  password: any(named: 'password'),
+                ))
+            .thenThrow(
+                ServerException(message: 'Server error', statusCode: 500));
+
+        final result = await repository.register(
+          username: tUserName,
+          password: tPassword,
+          name: tName,
+        );
+
+        verify(() => mockRemoteDataSource.register(
+              name: tName,
+              username: tUserName,
+              password: tPassword,
+            ));
+
+        verifyZeroInteractions(mockLocalDataSource);
+
+        expect(
+          result,
+          equals(
+            Left(
+              ServerFailure(message: 'Server error', statusCode: 500),
+            ),
+          ),
+        );
+      });
+
+      test(
+          'should cache the user locally when the call to remote data source is successful',
+          () async {
+        when(() => mockRemoteDataSource.register(
+              name: any(named: 'name'),
+              username: any(named: 'username'),
+              password: any(named: 'password'),
+            )).thenAnswer((_) async => tUserModel);
+
+        when(() => mockLocalDataSource.cacheUser(any()))
+            .thenAnswer((_) async {});
+
+        await repository.register(
+          username: tUserName,
+          password: tPassword,
+          name: tName,
+        );
+
+        verify(() => mockRemoteDataSource.register(
+              name: tName,
+              username: tUserName,
+              password: tPassword,
+            ));
+
+        verify(() => mockLocalDataSource.cacheUser(tUserModel));
+
+        clearInteractions(mockRemoteDataSource);
+        clearInteractions(mockLocalDataSource);
+      });
+    });
+
+    group('device is offline', () {
+      setUp(() {
+        when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => false);
+      });
+
+      test('should return device offline failure when the device is offline',
+          () async {
+        final result = await repository.register(
+          username: tUserName,
+          password: tPassword,
+          name: tName,
+        );
+
+        verifyZeroInteractions(mockRemoteDataSource);
+        verifyZeroInteractions(mockLocalDataSource);
+
+        expect(
+          result,
+          equals(
+            Left(
+              DeviceOfflineFailure(),
+            ),
+          ),
+        );
       });
     });
   });
