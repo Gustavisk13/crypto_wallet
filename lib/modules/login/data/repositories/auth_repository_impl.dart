@@ -56,9 +56,32 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, User>> signIn(
-      {required String username, required String password}) {
-    // TODO: implement signIn
-    throw UnimplementedError();
+      {required String username, required String password}) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final user = await remoteDataSource.signIn(
+          username: username,
+          password: password,
+        );
+
+        await localDataSource.cacheUser(user);
+
+        return Right(user);
+      } on ServerException catch (e) {
+        return Left(ServerFailure(
+          message: e.message,
+          statusCode: e.statusCode,
+        ));
+      } on CacheException {
+        return Left(
+          CacheFailure(),
+        );
+      }
+    } else {
+      return Left(
+        DeviceOfflineFailure(),
+      );
+    }
   }
 
   @override

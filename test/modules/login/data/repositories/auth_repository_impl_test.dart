@@ -73,22 +73,7 @@ void main() {
       name: 'Usuário teste',
       username: 'teste@email.com',
       token: 'token',
-      wallets: [
-        UserWalletModel(
-          id: 1,
-          description: 'Carteira Teste 2',
-          userId: 1,
-          createdAt: DateTime.parse('2023-11-03T23:03:30.990Z'),
-          updatedAt: DateTime.parse('2023-11-03T23:03:30.990Z'),
-        ),
-        UserWalletModel(
-          id: 2,
-          description: 'Carteira Teste 2',
-          userId: 1,
-          createdAt: DateTime.parse('2023-11-03T23:03:35.757Z'),
-          updatedAt: DateTime.parse('2023-11-03T23:03:35.757Z'),
-        ),
-      ],
+      wallets: const [],
       createdAt: DateTime.parse('2023-11-01T15:05:27.045Z'),
       updatedAt: DateTime.parse('2023-11-01T15:05:27.045Z'),
     );
@@ -216,6 +201,48 @@ void main() {
         clearInteractions(mockRemoteDataSource);
         clearInteractions(mockLocalDataSource);
       });
+
+      test(
+          'should return cache failure when the call to local data source is unsuccessful',
+          () async {
+        when(() => mockRemoteDataSource.register(
+              name: any(named: 'name'),
+              username: any(named: 'username'),
+              password: any(named: 'password'),
+            )).thenAnswer((_) async => tUserModel);
+
+        when(() => mockLocalDataSource.cacheUser(any()))
+            .thenThrow(CacheException());
+
+        final result = await repository.register(
+          username: tUserName,
+          password: tPassword,
+          name: tName,
+        );
+
+        verify(() => mockRemoteDataSource.register(
+              name: tName,
+              username: tUserName,
+              password: tPassword,
+            ));
+
+        verify(() => mockLocalDataSource.cacheUser(tUserModel));
+
+        expect(
+          result,
+          equals(
+            Left(
+              CacheFailure(),
+            ),
+          ),
+        );
+
+        verifyNoMoreInteractions(mockRemoteDataSource);
+        verifyNoMoreInteractions(mockLocalDataSource);
+
+        clearInteractions(mockRemoteDataSource);
+        clearInteractions(mockLocalDataSource);
+      });
     });
 
     group('device is offline', () {
@@ -245,4 +272,166 @@ void main() {
       });
     });
   });
+
+  group('sign in', () {
+    const String tUserName = 'teste@mail.com';
+    const String tPassword = '123456';
+
+    final UserModel tUserModel = UserModel(
+      id: 1,
+      name: 'Usuário teste',
+      username: 'teste@email.com',
+      token: 'token',
+      wallets: const [],
+      createdAt: DateTime.parse('2023-11-01T15:05:27.045Z'),
+      updatedAt: DateTime.parse('2023-11-01T15:05:27.045Z'),
+    );
+
+    test('should check if the device is online', () async {
+      when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+
+      when(
+        () => mockRemoteDataSource.signIn(
+          username: any(named: 'username'),
+          password: any(named: 'password'),
+        ),
+      ).thenAnswer((_) async => tUserModel);
+
+      when(() => mockLocalDataSource.cacheUser(any())).thenAnswer((_) async {});
+
+      await repository.signIn(
+        username: tUserName,
+        password: tPassword,
+      );
+
+      verify(() => mockNetworkInfo.isConnected);
+      verifyNoMoreInteractions(mockNetworkInfo);
+
+      clearInteractions(mockNetworkInfo);
+      clearInteractions(mockRemoteDataSource);
+      clearInteractions(mockLocalDataSource);
+    });
+
+    group('device is online', () {
+      setUp(() {
+        when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      });
+
+      test(
+          'should return remote data when the call to remote data source is successful',
+          () async {
+        when(() => mockRemoteDataSource.signIn(
+              username: any(named: 'username'),
+              password: any(named: 'password'),
+            )).thenAnswer((_) async => tUserModel);
+
+        final result = await repository.signIn(
+          username: tUserName,
+          password: tPassword,
+        );
+
+        expect(result, equals(Right(tUserModel)));
+
+        verify(() => mockRemoteDataSource.signIn(
+              username: tUserName,
+              password: tPassword,
+            ));
+
+        clearInteractions(mockRemoteDataSource);
+        clearInteractions(mockLocalDataSource);
+      });
+
+      test(
+          'should return server failure when the call to remote data source is unsuccessful',
+          () async {
+        when(() => mockRemoteDataSource.signIn(
+                  username: any(named: 'username'),
+                  password: any(named: 'password'),
+                ))
+            .thenThrow(
+                ServerException(message: 'Server error', statusCode: 500));
+
+        final result = await repository.signIn(
+          username: tUserName,
+          password: tPassword,
+        );
+
+        verify(() => mockRemoteDataSource.signIn(
+              username: tUserName,
+              password: tPassword,
+            ));
+
+        verifyZeroInteractions(mockLocalDataSource);
+
+        expect(
+          result,
+          equals(
+            Left(
+              ServerFailure(message: 'Server error', statusCode: 500),
+            ),
+          ),
+        );
+      });
+
+      test(
+          'should cache the user locally when the call to remote data source is successful',
+          () async {
+        when(() => mockRemoteDataSource.signIn(
+              username: any(named: 'username'),
+              password: any(named: 'password'),
+            )).thenAnswer((_) async => tUserModel);
+
+        when(() => mockLocalDataSource.cacheUser(any()))
+            .thenAnswer((_) async {});
+
+        await repository.signIn(
+          username: tUserName,
+          password: tPassword,
+        );
+
+        verify(() => mockRemoteDataSource.signIn(
+              username: tUserName,
+              password: tPassword,
+            ));
+      });
+
+      test(
+          'should return cache failure when the call to local data source is unsuccessful',
+          () async {
+        when(() => mockRemoteDataSource.signIn(
+              username: any(named: 'username'),
+              password: any(named: 'password'),
+            )).thenAnswer((_) async => tUserModel);
+
+        when(() => mockLocalDataSource.cacheUser(any()))
+            .thenThrow(CacheException());
+
+        final result = await repository.signIn(
+          username: tUserName,
+          password: tPassword,
+        );
+
+        verify(() => mockRemoteDataSource.signIn(
+              username: tUserName,
+              password: tPassword,
+            ));
+
+        verify(() => mockLocalDataSource.cacheUser(tUserModel));
+
+        expect(
+          result,
+          equals(
+            Left(
+              CacheFailure(),
+            ),
+          ),
+        );
+
+        verifyNoMoreInteractions(mockRemoteDataSource);
+        verifyNoMoreInteractions(mockLocalDataSource);
+      });
+    });
+  });
+
+  group('sign out', () {});
 }
