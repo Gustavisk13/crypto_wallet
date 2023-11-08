@@ -85,8 +85,14 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<Either<Failure, void>> signOut() async {
+    try {
+      await localDataSource.removeCachedUser();
+      return const Right(null);
+    } on CacheException {
+      return Left(
+        CacheFailure(),
+      );
+    }
   }
 }

@@ -1,4 +1,11 @@
+// Dart imports:
+import 'dart:convert';
+
+// Package imports:
+import 'package:shared_preferences/shared_preferences.dart';
+
 // Project imports:
+import 'package:crypto_wallet/core/errors/exceptions.dart';
 import 'package:crypto_wallet/modules/login/data/models/user_model.dart';
 
 abstract class AuthLocalDataSource {
@@ -17,4 +24,40 @@ abstract class AuthLocalDataSource {
   ///
   /// Throws a [CacheException] if an error occurs.
   Future<void> removeCachedUser();
+}
+
+class AuthLocalDataSourceImpl implements AuthLocalDataSource {
+  final SharedPreferences sharedPreferences;
+
+  AuthLocalDataSourceImpl({required this.sharedPreferences});
+
+  @override
+  Future<UserModel> getLastUser() {
+    final jsonString = sharedPreferences.getString('CACHED_USER');
+
+    if (jsonString != null) {
+      return Future.value(UserModel.fromJson(jsonDecode(jsonString)));
+    } else {
+      throw CacheException();
+    }
+  }
+
+  @override
+  Future<void> cacheUser(UserModel userToCache) async {
+    final success = await sharedPreferences.setString(
+        'CACHED_USER', jsonEncode(userToCache.toJson()));
+
+    if (!success) {
+      throw CacheException();
+    }
+  }
+
+  @override
+  Future<void> removeCachedUser() async {
+    final success = await sharedPreferences.remove('CACHED_USER');
+
+    if (!success) {
+      throw CacheException();
+    }
+  }
 }

@@ -433,5 +433,35 @@ void main() {
     });
   });
 
-  group('sign out', () {});
+  group('sign out', () {
+    test('should call local data source', () async {
+      when(() => mockLocalDataSource.removeCachedUser())
+          .thenAnswer((_) async {});
+
+      await repository.signOut();
+
+      verify(() => mockLocalDataSource.removeCachedUser());
+    });
+    test(
+        'should return cache failure when the call to local data source is unsuccessful',
+        () async {
+      when(() => mockLocalDataSource.removeCachedUser())
+          .thenThrow(CacheException());
+
+      final result = await repository.signOut();
+
+      verify(() => mockLocalDataSource.removeCachedUser());
+
+      expect(
+        result,
+        equals(
+          Left(
+            CacheFailure(),
+          ),
+        ),
+      );
+
+      verifyNoMoreInteractions(mockLocalDataSource);
+    });
+  });
 }
