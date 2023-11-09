@@ -3,12 +3,11 @@ import 'package:equatable/equatable.dart';
 
 // Project imports:
 import 'package:crypto_wallet/modules/coin/domain/entities/coin.dart';
-import 'package:crypto_wallet/modules/login/domain/entities/user.dart';
 
 class Wallet extends Equatable {
   final int id;
   final String description;
-  final User user;
+  final String userId;
   final List<Coin> coins;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -16,7 +15,7 @@ class Wallet extends Equatable {
   const Wallet({
     required this.id,
     required this.description,
-    required this.user,
+    required this.userId,
     required this.coins,
     required this.createdAt,
     required this.updatedAt,
@@ -26,7 +25,7 @@ class Wallet extends Equatable {
   List<Object?> get props => [
         id,
         description,
-        user,
+        userId,
         coins,
         createdAt,
         updatedAt,

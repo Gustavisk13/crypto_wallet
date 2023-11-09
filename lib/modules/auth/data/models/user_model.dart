@@ -1,6 +1,6 @@
 // Project imports:
-import 'package:crypto_wallet/modules/login/data/models/user_wallet_model.dart';
-import 'package:crypto_wallet/modules/login/domain/entities/user.dart';
+import 'package:crypto_wallet/modules/auth/data/models/user_wallet_model.dart';
+import 'package:crypto_wallet/modules/auth/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({

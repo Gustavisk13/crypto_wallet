@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // Project imports:
 import 'package:crypto_wallet/core/errors/exceptions.dart';
-import 'package:crypto_wallet/modules/login/data/models/user_model.dart';
+import 'package:crypto_wallet/modules/auth/data/models/user_model.dart';
 
 abstract class AuthLocalDataSource {
   /// Gets the cached [UserModel] which was gotten the last time

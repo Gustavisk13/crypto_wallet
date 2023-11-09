@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:crypto_wallet/core/config/environment_config.dart';
 import 'package:crypto_wallet/core/errors/exceptions.dart';
 import 'package:crypto_wallet/injection_container.dart';
-import 'package:crypto_wallet/modules/login/data/models/user_model.dart';
+import 'package:crypto_wallet/modules/auth/data/models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
   /// Calls the /login endpoint.

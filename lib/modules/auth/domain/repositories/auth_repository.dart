@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 
 // Project imports:
 import 'package:crypto_wallet/core/errors/failures.dart';
-import 'package:crypto_wallet/modules/login/domain/entities/user.dart';
+import 'package:crypto_wallet/modules/auth/domain/entities/user.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, User>> signIn(

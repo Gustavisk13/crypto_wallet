@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:crypto_wallet/core/utils/styles.dart';
 import 'package:crypto_wallet/core/widgets/default_button_component.dart';
 import 'package:crypto_wallet/core/widgets/default_input_component.dart';
-import 'package:crypto_wallet/modules/login/presentation/bloc/login_controller.dart';
+import 'package:crypto_wallet/modules/auth/presentation/bloc/login_controller.dart';
 
 // Package imports:
 

@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 
 // Project imports:
-import 'package:crypto_wallet/modules/login/domain/entities/user_wallet.dart';
+import 'package:crypto_wallet/modules/auth/domain/entities/user_wallet.dart';
 
 class User extends Equatable {
   final int id;

@@ -5,8 +5,8 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 
 // Project imports:
-import 'package:crypto_wallet/modules/login/data/models/user_model.dart';
-import 'package:crypto_wallet/modules/login/data/models/user_wallet_model.dart';
+import 'package:crypto_wallet/modules/auth/data/models/user_model.dart';
+import 'package:crypto_wallet/modules/auth/data/models/user_wallet_model.dart';
 import '../../../../fixtures/fixture_reader.dart';
 
 void main() {

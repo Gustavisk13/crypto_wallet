@@ -5,10 +5,10 @@ import 'package:dartz/dartz.dart';
 import 'package:crypto_wallet/core/errors/exceptions.dart';
 import 'package:crypto_wallet/core/errors/failures.dart';
 import 'package:crypto_wallet/core/network/network_info.dart';
-import 'package:crypto_wallet/modules/login/data/datasources/auth_local_datasource.dart';
-import 'package:crypto_wallet/modules/login/data/datasources/auth_remote_datasource.dart';
-import 'package:crypto_wallet/modules/login/domain/entities/user.dart';
-import 'package:crypto_wallet/modules/login/domain/repositories/auth_repository.dart';
+import 'package:crypto_wallet/modules/auth/data/datasources/auth_local_datasource.dart';
+import 'package:crypto_wallet/modules/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:crypto_wallet/modules/auth/domain/entities/user.dart';
+import 'package:crypto_wallet/modules/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;

@@ -5,8 +5,8 @@ import 'package:mocktail/mocktail.dart';
 
 // Project imports:
 import 'package:crypto_wallet/core/domain/usecases/usecase.dart';
-import 'package:crypto_wallet/modules/login/domain/repositories/auth_repository.dart';
-import 'package:crypto_wallet/modules/login/domain/usecases/sign_out.dart';
+import 'package:crypto_wallet/modules/auth/domain/repositories/auth_repository.dart';
+import 'package:crypto_wallet/modules/auth/domain/usecases/sign_out.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 

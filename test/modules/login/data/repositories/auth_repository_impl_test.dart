@@ -7,11 +7,11 @@ import 'package:mocktail/mocktail.dart';
 import 'package:crypto_wallet/core/errors/exceptions.dart';
 import 'package:crypto_wallet/core/errors/failures.dart';
 import 'package:crypto_wallet/core/network/network_info.dart';
-import 'package:crypto_wallet/modules/login/data/datasources/auth_local_datasource.dart';
-import 'package:crypto_wallet/modules/login/data/datasources/auth_remote_datasource.dart';
-import 'package:crypto_wallet/modules/login/data/models/user_model.dart';
-import 'package:crypto_wallet/modules/login/data/models/user_wallet_model.dart';
-import 'package:crypto_wallet/modules/login/data/repositories/auth_repository_impl.dart';
+import 'package:crypto_wallet/modules/auth/data/datasources/auth_local_datasource.dart';
+import 'package:crypto_wallet/modules/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:crypto_wallet/modules/auth/data/models/user_model.dart';
+import 'package:crypto_wallet/modules/auth/data/models/user_wallet_model.dart';
+import 'package:crypto_wallet/modules/auth/data/repositories/auth_repository_impl.dart';
 
 class MockAuthRemoteDataSource extends Mock implements AuthRemoteDataSource {}
 
