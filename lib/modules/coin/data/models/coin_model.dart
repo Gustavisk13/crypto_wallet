@@ -35,7 +35,7 @@ class CoinModel extends Coin {
       dataEnd: DateTime.parse(json['data_end']),
       price:
           json['price'] != null ? (json['price'] as double).toDouble() : null,
-      iconId: json['icon_id'],
+      iconId: _formatIconId(iconId: json['icon_id']),
       symbolId: json['symbol_id'],
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
@@ -55,5 +55,13 @@ class CoinModel extends Coin {
       "created_at": createdAt.toIso8601String(),
       "updated_at": updatedAt.toIso8601String(),
     };
+  }
+
+  static String? _formatIconId({String? iconId}) {
+    if (iconId != null) {
+      iconId = iconId.replaceAll("-", "");
+    }
+
+    return iconId;
   }
 }

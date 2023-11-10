@@ -1,0 +1,106 @@
+{
+  "user": {
+    "id": 1,
+    "username": "teste@email.com",
+    "password_digest": "$2a$12$BiTuPMacON0xsfvdbhm6qOSsoGmKwAV.RoZ9BkTRielNtL541y5zG",
+    "name": "Usuário teste",
+    "created_at": "2023-11-01T15:05:27.045Z",
+    "updated_at": "2023-11-01T15:05:27.045Z"
+  },
+  "wallets": [
+    {
+      "wallet": {
+        "id": 1,
+        "description": "Nova Carteira Teste 1",
+        "user_id": 1,
+        "created_at": "2023-11-03T23:03:30.990Z",
+        "updated_at": "2023-11-09T23:25:02.030Z"
+      },
+      "coins": [
+        {
+          "id": 22,
+          "name": "Cardano",
+          "asset_id": "ADA",
+          "data_start": "2021-11-24",
+          "data_end": "2023-10-31",
+          "price": 0.287535,
+          "created_at": "2023-11-01T14:56:45.480Z",
+          "updated_at": "2023-11-01T14:56:45.480Z",
+          "symbol_id": "BITSTAMP_SPOT_ADA_USD",
+          "icon_id": "2701173b-1b77-40f2-8693-9659359e225c"
+        },
+        {
+          "id": 29,
+          "name": "Ethereum",
+          "asset_id": "ETH",
+          "data_start": "2017-08-20",
+          "data_end": "2023-10-31",
+          "price": 1788.85,
+          "created_at": "2023-11-01T14:57:02.637Z",
+          "updated_at": "2023-11-01T14:57:02.637Z",
+          "symbol_id": "BITSTAMP_SPOT_ETH_USD",
+          "icon_id": "604ae453-3d9f-4ad0-9a48-9905cce617c2"
+        },
+        {
+          "id": 58,
+          "name": "Bitcoin",
+          "asset_id": "BTC",
+          "data_start": "2011-09-13",
+          "data_end": "2023-10-31",
+          "price": 34237.5,
+          "created_at": "2023-11-01T14:58:09.209Z",
+          "updated_at": "2023-11-01T14:58:09.209Z",
+          "symbol_id": "BITSTAMP_SPOT_BTC_USD",
+          "icon_id": "4caf2b16-a017-4e26-a348-2cea69c34cba"
+        }
+      ]
+    },
+    {
+      "wallet": {
+        "id": 2,
+        "description": "Carteira Teste 2",
+        "user_id": 1,
+        "created_at": "2023-11-03T23:03:35.757Z",
+        "updated_at": "2023-11-03T23:03:35.757Z"
+      },
+      "coins": [
+        {
+          "id": 16,
+          "name": "Litecoin",
+          "asset_id": "LTC",
+          "data_start": "2017-06-28",
+          "data_end": "2023-10-31",
+          "price": 66.79,
+          "created_at": "2023-11-01T14:56:32.120Z",
+          "updated_at": "2023-11-01T14:56:32.120Z",
+          "symbol_id": "BITSTAMP_SPOT_LTC_USD",
+          "icon_id": "a201762f-1499-41ef-9b84-e0742cd00e48"
+        },
+        {
+          "id": 29,
+          "name": "Ethereum",
+          "asset_id": "ETH",
+          "data_start": "2017-08-20",
+          "data_end": "2023-10-31",
+          "price": 1788.85,
+          "created_at": "2023-11-01T14:57:02.637Z",
+          "updated_at": "2023-11-01T14:57:02.637Z",
+          "symbol_id": "BITSTAMP_SPOT_ETH_USD",
+          "icon_id": "604ae453-3d9f-4ad0-9a48-9905cce617c2"
+        },
+        {
+          "id": 58,
+          "name": "Bitcoin",
+          "asset_id": "BTC",
+          "data_start": "2011-09-13",
+          "data_end": "2023-10-31",
+          "price": 34237.5,
+          "created_at": "2023-11-01T14:58:09.209Z",
+          "updated_at": "2023-11-01T14:58:09.209Z",
+          "symbol_id": "BITSTAMP_SPOT_BTC_USD",
+          "icon_id": "4caf2b16-a017-4e26-a348-2cea69c34cba"
+        }
+      ]
+    }
+  ]
+}

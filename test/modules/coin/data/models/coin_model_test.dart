@@ -29,7 +29,7 @@ void main() {
     dataStart: DateTime.parse('2011-09-13'),
     dataEnd: DateTime.parse('2023-10-31'),
     price: 34237.5,
-    iconId: "4caf2b16-a017-4e26-a348-2cea69c34cba",
+    iconId: "4caf2b16a0174e26a3482cea69c34cba",
     symbolId: 'BITSTAMP_SPOT_BTC_USD',
     createdAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
     updatedAt: DateTime.parse("2023-11-01T14:58:09.209Z"),
@@ -58,6 +58,17 @@ void main() {
 
       expect(result, equals(tCoinRegularPriceModel));
     });
+
+    test('should format iconId', () async {
+      const String expectedIconId = "4caf2b16a0174e26a3482cea69c34cba";
+
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('coin/coin.json'));
+
+      final result = CoinModel.fromJson(json: jsonMap);
+
+      expect(result.iconId, equals(expectedIconId));
+    });
   });
 
   group('toJson', () {
@@ -71,7 +82,7 @@ void main() {
         "data_start": "2011-09-13T00:00:00.000",
         "data_end": "2023-10-31T00:00:00.000",
         "price": 34237.5,
-        "icon_id": "4caf2b16-a017-4e26-a348-2cea69c34cba",
+        "icon_id": "4caf2b16a0174e26a3482cea69c34cba",
         "symbol_id": "BITSTAMP_SPOT_BTC_USD",
         "created_at": "2023-11-01T14:58:09.209Z",
         "updated_at": "2023-11-01T14:58:09.209Z",
