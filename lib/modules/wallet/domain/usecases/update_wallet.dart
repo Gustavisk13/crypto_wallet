@@ -5,16 +5,26 @@ import 'package:dartz/dartz.dart';
 import 'package:crypto_wallet/core/domain/usecases/usecase.dart';
 import 'package:crypto_wallet/core/errors/failures.dart';
 import 'package:crypto_wallet/modules/wallet/domain/entities/wallet.dart';
+import 'package:crypto_wallet/modules/wallet/domain/repositories/wallet_repository.dart';
 
 class UpdateWallet extends UseCase<Wallet, UpdateWalletParams> {
+  final WalletRepository repository;
+
+  UpdateWallet({
+    required this.repository,
+  });
   @override
-  Future<Either<Failure, Wallet>> call(UpdateWalletParams params) {
-    throw UnimplementedError();
+  Future<Either<Failure, Wallet>> call(UpdateWalletParams params) async {
+    return await repository.updateWallet(
+      walletId: params.walletId,
+      description: params.description,
+      coinAssetIds: params.coinAssetIds,
+    );
   }
 }
 
 class UpdateWalletParams {
-  final String walletId;
+  final int walletId;
   final String description;
   final List<String> coinAssetIds;
 

@@ -7,7 +7,7 @@ import 'package:crypto_wallet/modules/coin/domain/entities/coin.dart';
 class Wallet extends Equatable {
   final int id;
   final String description;
-  final String userId;
+  final int userId;
   final List<Coin> coins;
   final DateTime createdAt;
   final DateTime updatedAt;

@@ -7,23 +7,22 @@ import 'package:crypto_wallet/core/errors/failures.dart';
 import 'package:crypto_wallet/modules/wallet/domain/entities/wallet.dart';
 import 'package:crypto_wallet/modules/wallet/domain/repositories/wallet_repository.dart';
 
-class GetWallet extends UseCase<Wallet, GetWalletParams> {
+class GetWallets extends UseCase<List<Wallet>, GetWalletsParams> {
   final WalletRepository repository;
 
-  GetWallet({
+  GetWallets({
     required this.repository,
   });
-
   @override
-  Future<Either<Failure, Wallet>> call(GetWalletParams params) async {
-    return await repository.getWallet(walletId: params.walletId);
+  Future<Either<Failure, List<Wallet>>> call(GetWalletsParams params) async {
+    return await repository.getWallets(userId: params.userId);
   }
 }
 
-class GetWalletParams {
-  final int walletId;
+class GetWalletsParams {
+  final int userId;
 
-  GetWalletParams({
-    required this.walletId,
+  GetWalletsParams({
+    required this.userId,
   });
 }
